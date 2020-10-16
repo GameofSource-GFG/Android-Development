@@ -11,7 +11,6 @@ Participants will be given an issue as a feature to develop in the android appli
 <h4>Important Resources</h4>
 Guide to Fork A repository : <a href="https://docs.github.com/en/free-pro-team@latest/github/getting-started-with-github/fork-a-repo">Click Here</a> <br>
 Guide to make a Pull request: <a href="https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/about-pull-requests">Click Here</a> <br>
-Slack Channel: <a href="https://join.slack.com/t/gameofsource/shared_invite/zt-hy0v8yrr-pE67fu47zkJjYvOSb3VhPQ">Click Here</a> to join Slack.
 
 <h4>Contact Us</h4>
 All the participant queries will be resolved in slack channel.
