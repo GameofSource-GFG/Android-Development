@@ -13,4 +13,4 @@ Guide to Fork A repository : <a href="https://docs.github.com/en/free-pro-team@l
 Guide to make a Pull request: <a href="https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/about-pull-requests">Click Here</a> <br>
 
 <h4>Contact Us</h4>
-All the participant queries will be resolved in slack channel.
+All the participant queries will be resolved in whatsapp group.
