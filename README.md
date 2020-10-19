@@ -14,3 +14,4 @@ Guide to make a Pull request: <a href="https://docs.github.com/en/free-pro-team@
 
 <h4>Contact Us</h4>
 All the participant queries will be resolved in whatsapp group.
+Link to join https://chat.whatsapp.com/L9QKq3rqJKE3BfAV1yfFz4
