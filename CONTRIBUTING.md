@@ -76,14 +76,14 @@ Before making any changes and/or in an appropriate interval, run the following c
 # Fetch all remote repositories and delete any deleted remote branches
 $ git fetch --all --prune
 
-# Switch to `master` branch
-$ git checkout master
+# Switch to `main` branch
+$ git checkout main
 
-# Reset local `master` branch to match `upstream` repository's `master` branch
-$ git reset --hard upstream/master
+# Reset local `main` branch to match `upstream` repository's `main` branch
+$ git reset --hard upstream/main
 
 # Push changes to your forked `Android-Development` repo
-$ git push origin master
+$ git push origin 
 ```
 
 ### You're Ready to Go
@@ -129,7 +129,7 @@ $ cp .sample.env .env
 
 ### Create a new branch
 
-Whenever you are going to make contribution. Please create seperate branch using the command and keep your `master` branch clean and most stable version of your project (i.e. synced with remote branch).
+Whenever you are going to make contribution. Please create seperate branch using the command and keep your `main` branch clean and most stable version of your project (i.e. synced with remote branch).
 
 ```sh
 # It will create a new branch with name <YOUR GITHUB USERNAME>/<ISSUE NUMBER> and switch to that branch
