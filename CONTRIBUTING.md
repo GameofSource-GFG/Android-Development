@@ -2,11 +2,11 @@
 
 ## Guidelines
 
-- Issues will be assigned on a first come, first serve basis. You just have to comment on the issue, asking to be assigned, and it will be done if found fit.
-- Preferably, you cannot work on any issue that is not assigned to you.
-- In case you want to submit an improvement to an existing feature or section, we prefer that you notify us in suggested medium of contact, describing in details your improvement. This will help others to analyze your contribution.
-- All PRs must be made from a Branch. Create a separate branch for every Issue you are working upon and once found fit, make a PR.
-- If you have no idea what are [issues](https://docs.github.com/en/free-pro-team@latest/github/managing-your-work-on-github/about-issues) or [PR](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/about-pull-requests)s, please do refer to the links.
+-   Issues will be assigned on a first come, first serve basis. You just have to comment on the issue, asking to be assigned, and it will be done if found fit.
+-   Preferably, you cannot work on any issue that is not assigned to you.
+-   In case you want to submit an improvement to an existing feature or section, we prefer that you notify us in suggested medium of contact, describing in details your improvement. This will help others to analyze your contribution.
+-   All PRs must be made from a Branch. Create a separate branch for every Issue you are working upon and once found fit, make a PR.
+-   If you have no idea what are [issues](https://docs.github.com/en/free-pro-team@latest/github/managing-your-work-on-github/about-issues) or [PR](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/about-pull-requests)s, please do refer to the links.
 
 **Make sure your code works before submitting it :D**
 
@@ -20,7 +20,7 @@
 
 You can get your own fork/copy of this project by using the <kbd>Fork</kbd> button.
 
- ![Fork Button](https://help.github.com/assets/images/help/repository/fork_button.jpg)
+![Fork Button](https://help.github.com/assets/images/help/repository/fork_button.jpg)
 
 ### Clone it
 
@@ -40,7 +40,7 @@ Move to this folder for all other commands.
 
 ### Set it up
 
-Run the following commands to see that *your local copy* has a reference to *your forked remote repository* in Github :octocat:
+Run the following commands to see that _your local copy_ has a reference to _your forked remote repository_ in Github :octocat:
 
 ```sh
 $ git remote -v
@@ -54,7 +54,7 @@ Now, lets add a reference to the original [Android-Development](https://github.c
 $ git remote add upstream https://github.com/GameofSource-GFG/Android-Development.git
 ```
 
-> This adds a new remote named ***upstream***.
+> This adds a new remote named **_upstream_**.
 
 Verify the changes using
 
@@ -70,7 +70,7 @@ upstream  https://github.com/GameofSource-GFG/Android-Development.git (push)
 
 **Always keep your local copy of repository updated with the original repository.**
 
-Before making any changes and/or in an appropriate interval, run the following commands *carefully* to update your local repository.
+Before making any changes and/or in an appropriate interval, run the following commands _carefully_ to update your local repository.
 
 ```sh
 # Fetch all remote repositories and delete any deleted remote branches
@@ -83,7 +83,7 @@ $ git checkout main
 $ git reset --hard upstream/main
 
 # Push changes to your forked `Android-Development` repo
-$ git push origin 
+$ git push origin
 ```
 
 ### You're Ready to Go
@@ -100,28 +100,33 @@ Once you have completed these steps, you are ready to start contributing by chec
 </summary>
 
 Make sure you have following installed on your machine:
-- [Git](https://git-scm.com/downloads)
-- [Node.js](https://nodejs.org/en/download/)
-- [Yarn](https://yarnpkg.com/getting-started/install)
+
+-   [Git](https://git-scm.com/downloads)
+-   [Flutter SDK](https://flutter.dev/docs/get-started/install)
+-   [Android Studio](https://developer.android.com/studio) or [VSCode](https://code.visualstudio.com/download)
+
+To setup Flutter in Android Studio check [here](https://flutter.dev/docs/development/tools/android-studio)
+
+To setup Flutter in VSCode check [here](https://flutter.dev/docs/development/tools/vs-code)
 
 Install all dependencies using:
 
 ```sh
-$ npm install
-# OR
-$ yarn
+$ flutter pub get
 ```
-<!-- 
+
+Run the app using:
+
+```sh
+$ flutter run
+```
+
+<!--
 +------------------------------------------------------+
 | Delete this comment after changes                    |
 | Do not delete the below copy command                 |
 +------------------------------------------------------+
 -->
-copy the .sample.env file as .env for your local testing
-
-```sh
-$ cp .sample.env .env
-```
 
 </details>
 
@@ -174,7 +179,7 @@ Finally, go to your repository in browser and click on `compare and pull request
 
 <h4>NOTE:</h4>
 
-***Make sure you make Pull Request from your branch to the `development` branch of our project***
+**_Make sure you make Pull Request from your branch to the `development` branch of our project_**
 
 ![IMAGE](https://pixan198.github.io/images/compare-pr.PNG)
 

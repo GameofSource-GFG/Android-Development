@@ -9,22 +9,22 @@ We as contributors and maintainers pledge to making participation in the project
 <h4>Acceptable Behaviour</h4>
 Contributors and maintainers must maintain a postive attire which includes:
 
-* Welcoming and inclusive language
-* Being respectful of differing viewpoints and experiences
-* Gracefully accepting constructive criticism
-* Focusing on what is best for the community
-* Showing empathy towards other community members
+-   Welcoming and inclusive language
+-   Being respectful of differing viewpoints and experiences
+-   Gracefully accepting constructive criticism
+-   Focusing on what is best for the community
+-   Showing empathy towards other community members
 
 <h4>Unacceptable Behaviour:</h4>
 
-* The use of sexualized language or imagery and unwelcome sexual attention or
- advances
-* Trolling, insulting/derogatory comments, and personal or political attacks
-* Public or private harassment
-* Publishing others' private information, such as a physical or electronic
- address, without explicit permission
-* Other conduct which could reasonably be considered inappropriate in a
- professional setting
+-   The use of sexualized language or imagery and unwelcome sexual attention or
+    advances
+-   Trolling, insulting/derogatory comments, and personal or political attacks
+-   Public or private harassment
+-   Publishing others' private information, such as a physical or electronic
+    address, without explicit permission
+-   Other conduct which could reasonably be considered inappropriate in a
+    professional setting
 
 These unacceptable behaviours once identified from contributors / members participation is hereby stand cancelled.
 
