@@ -1,4 +1,4 @@
-# Mobile Application Development
+# Mobile Application Development using Flutter
 Welcome to GameofSource Mobile Application Development Arena. 
 
 <h4>About Event</h4>
