@@ -1,4 +1,4 @@
-# Android Development 
+# Mobile Application Development
 Welcome to GameofSource Android Application Development Arena. 
 
 <h4>About Event</h4>
