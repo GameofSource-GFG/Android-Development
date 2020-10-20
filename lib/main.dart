@@ -17,8 +17,6 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         appBarTheme: AppBarTheme(color: kMainColor),
         accentColor: kMainColor,
-        fontFamily: 'ProductSans',
-        primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: UpcomingEventsScreen(),

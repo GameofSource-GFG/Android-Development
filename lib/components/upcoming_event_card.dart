@@ -63,7 +63,6 @@ class UpcomingEventCard extends StatelessWidget {
             text: TextSpan(
               style: TextStyle(
                 color: _textColor.withOpacity(0.8),
-                fontFamily: 'ProductSans',
                 fontSize: 17,
               ),
               children: [
@@ -80,7 +79,6 @@ class UpcomingEventCard extends StatelessWidget {
             text: TextSpan(
               style: TextStyle(
                 color: _textColor.withOpacity(0.8),
-                fontFamily: 'ProductSans',
                 fontSize: 17,
               ),
               children: [
