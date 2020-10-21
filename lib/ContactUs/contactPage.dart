@@ -34,7 +34,10 @@ class ContactPageState extends State<ContactPageHome> {
         centerTitle: true,
         backgroundColor: gfgTheme,
       ),
-      body: Container(
+      body: SingleChildScrollView(
+      child:Container(
+        height: H*.95,
+        width: W,
         color: Color.fromRGBO(47, 141, 70, .7),
         child: Center(
             child: Container(
@@ -110,6 +113,7 @@ class ContactPageState extends State<ContactPageHome> {
           ),
         )),
       ),
+      )
     );
   }
 
@@ -138,17 +142,20 @@ class ContactPageState extends State<ContactPageHome> {
     );
   }
   void saveData(){
-    var Firestore;
-    var db = Firestore.instance;
-    db.collection("GFG").document("contact_us").setData(
-      {
-        "name":_name,
-        "email":_email,
-        "phone":_phone,
-        "message":_message
-      }
-    ).whenComplete(() {
-      print("Message Sent");
-    });
+    print("Saving Data.....");
+    /// below is the code to save the message and sender details in firebase
+//    var Firestore;
+//    var db = Firestore.instance;
+//    db.collection("GFG").document("contact_us").setData(
+//      {
+//        "name":_name,
+//        "email":_email,
+//        "phone":_phone,
+//        "message":_message
+//      }
+//    ).whenComplete(() {
+//      print("Message Sent");
+//    });
+  print("Saved");
   }
 }
