@@ -7,12 +7,12 @@ import 'package:our_gfg/models/constraints.dart';
 import 'package:our_gfg/utils/tools.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class MEMBERS extends StatefulWidget {
+class Members extends StatefulWidget {
   @override
-  _MEMBERSState createState() => _MEMBERSState();
+  _MembersState createState() => _MembersState();
 }
 
-class _MEMBERSState extends State<MEMBERS> {
+class _MembersState extends State<Members> {
   List<MEMBER> developers = [
     MEMBER(
       speakerImage: "",
