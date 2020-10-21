@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class Developers extends StatefulWidget {
+class SocialMediaLinks extends StatefulWidget {
   @override
-  _DevelopersState createState() => _DevelopersState();
+  _SocialMediaLinksState createState() => _SocialMediaLinksState();
 }
 
-class _DevelopersState extends State<Developers> {
+class _SocialMediaLinksState extends State<SocialMediaLinks> {
   //urls for gfg different social media
   String fburl = "https://www.facebook.com/geeksforgeeks.org/";
   String websiteurl = "https://www.geeksforgeeks.org/";
