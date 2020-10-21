@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:our_gfg/ContactUs/contactPage.dart';
 
 void main() {
   runApp(MyApp());
@@ -108,7 +109,11 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: (){
+          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
+            builder: (ctx)=>ContactPage()
+          ), (route) => false);
+        },
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
