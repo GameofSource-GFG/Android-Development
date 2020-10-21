@@ -1,23 +1,28 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:our_gfg/screens/social_media.dart';
+import 'package:our_gfg/screens/upcoming_events_screen.dart';
 
-void main() {
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-
+  final kMainColor = Color(0xFF1d2d50);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+
+      debugShowCheckedModeBanner: false,
+        appBarTheme: AppBarTheme(color: kMainColor),
+        accentColor: kMainColor,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      debugShowCheckedModeBanner: false,
-      home: SocialMediaLinks(),
+      home: UpcomingEventsScreen(),
     );
   }
 }
