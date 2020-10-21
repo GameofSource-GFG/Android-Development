@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:our_gfg/screens/social_media.dart';
 import 'package:our_gfg/screens/upcoming_events_screen.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -10,11 +12,12 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   final kMainColor = Color(0xFF1d2d50);
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+
+      debugShowCheckedModeBanner: false,
         appBarTheme: AppBarTheme(color: kMainColor),
         accentColor: kMainColor,
         visualDensity: VisualDensity.adaptivePlatformDensity,
