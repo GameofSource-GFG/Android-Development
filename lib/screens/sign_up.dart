@@ -40,6 +40,24 @@ class _SignUpState extends State<SignUp> {
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.brown),
                     ),
+                    hintText: '\tName',
+                    icon: Icon(
+                      Icons.person_add,
+                      color: Colors.brown,
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 13,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 10, right: 10),
+                child: TextField(
+                  decoration: InputDecoration(
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.brown),
+                    ),
                     hintText: '\tEmail',
                     icon: Icon(
                       Icons.email,
