@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:our_gfg/models/constraints.dart';
+import 'package:our_gfg/models/members.dart';
 import 'package:our_gfg/utils/tools.dart';
 import 'package:url_launcher/url_launcher.dart';
 

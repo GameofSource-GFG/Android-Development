@@ -1,23 +1,16 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:our_gfg/constants/constants.dart';
-class About extends StatelessWidget {
 
+class About extends StatelessWidget {
   Future<dynamic> urlLauncher(String url) async // function for launching url
   {
-      if(await canLaunch(url))
-      {
-        return await launch(url);
-      }
-      else
-      {
-        throw 'Cannot launch $url';
-      }
+    if (await canLaunch(url)) {
+      return await launch(url);
+    } else {
+      throw 'Cannot launch $url';
+    }
   }
-
-
 
   @override
   Widget build(BuildContext context) {
