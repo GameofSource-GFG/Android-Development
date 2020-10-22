@@ -33,7 +33,6 @@ class About extends StatelessWidget {
                   'GeeksForGeeks Student Chapter',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      fontFamily: 'Exo_2',
                       color: Colors.green,
                       fontSize: 30,
                       fontWeight: FontWeight.bold),
@@ -90,46 +89,6 @@ class About extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                GestureDetector(
-                  onTap: () async{
-                    await urlLauncher("https://example.com"); // change it to the actual url
-                  },
-                  child: Icon(
-                    FontAwesomeIcons.facebook,size: iconSize,
-                    color: iconColor
-                    )),
-                SizedBox(width: sizedBoxWidth,),
-                GestureDetector(
-                  onTap: () async{
-                    await urlLauncher("https://example.com"); // change it to the actual url
-                  },
-                  child: Icon(
-                    FontAwesomeIcons.instagram,size: iconSize,
-                    color: iconColor
-                    )),
-                SizedBox(width: sizedBoxWidth,),
-                GestureDetector(
-                  onTap: () async{
-                    await urlLauncher("https://example.com");// change it to the actual url
-                  },
-                  child: Icon(
-                    FontAwesomeIcons.linkedin,size: iconSize,
-                    color: iconColor
-                    )),
-                    SizedBox(width: sizedBoxWidth,),
-                GestureDetector(
-                  onTap: () async{
-                    await urlLauncher("https://example.com"); // change it to the actual url
-                  },
-                  child: Icon(
-                    FontAwesomeIcons.github,size: iconSize,
-                    color: iconColor
-                    )),
-              ],
-            )
           ]),
         ),
       ),
