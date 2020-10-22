@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'screens/about_screen.dart';
 import 'package:our_gfg/screens/upcoming_events_screen.dart';
 
 void main() async {
@@ -9,6 +10,7 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+
   final kMainColor = Color(0xFF1d2d50);
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,7 @@ class MyApp extends StatelessWidget {
         accentColor: kMainColor,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: UpcomingEventsScreen(),
+      home: About(),
     );
   }
 }
