@@ -181,7 +181,7 @@ class _MembersState extends State<Members> {
                           children: <Widget>[
                             Text(
                               developers[i].speakerName,
-                              style: Theme.of(context).textTheme.title,
+                              style: Theme.of(context).textTheme.headline1,
                             ),
                             SizedBox(
                               height: 5,
@@ -197,10 +197,8 @@ class _MembersState extends State<Members> {
                         SizedBox(
                           height: 10,
                         ),
-                        Text(
-                          developers[i].speakerDesc,
-                          style: Theme.of(context).textTheme.subtitle,
-                        ),
+                        Text(developers[i].speakerDesc,
+                            style: Theme.of(context).textTheme.headline6),
                         SizedBox(
                           height: 10,
                         ),
