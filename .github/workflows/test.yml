@@ -27,5 +27,5 @@ jobs:
       run: flutter pub get 
     - name: Analyze the Dart code for any errors
       run: flutter analyze
-    - name: Run tests
-      run: pub run test
+#     - name: Run tests
+#       run: pub run test
