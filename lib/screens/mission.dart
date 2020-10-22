@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class AfterSplash extends StatefulWidget {
+class MissionAndVision extends StatefulWidget {
   @override
-  _AfterSplashState createState() => _AfterSplashState();
+  _MissionAndVisionState createState() => _MissionAndVisionState();
 }
 
-class _AfterSplashState extends State<AfterSplash> {
+class _MissionAndVisionState extends State<MissionAndVision> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
