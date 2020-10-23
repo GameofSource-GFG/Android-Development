@@ -1,5 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:our_gfg/screens/LoginScreen.dart';
+import 'package:our_gfg/screens/about_screen.dart';
 import 'package:our_gfg/screens/upcoming_events_screen.dart';
 
 void main() async {
@@ -19,7 +21,7 @@ class MyApp extends StatelessWidget {
         accentColor: kMainColor,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: UpcomingEventsScreen(),
+      home: LoginScreen(),
     );
   }
 }
