@@ -42,7 +42,7 @@ class About extends StatelessWidget {
                 backgroundColor: Colors.green,
                 radius: 70,
                 child: CircleAvatar(
-                  backgroundImage: AssetImage('images/pp.jpeg'),
+                  backgroundImage: AssetImage('images/logo.jpeg'),
                   radius: 67,
                   foregroundColor: Colors.green,
                 ),
