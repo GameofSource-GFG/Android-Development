@@ -11,9 +11,21 @@ class ContactUs extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.grey[300],
         appBar: AppBar(
           title: Text("Contact Us"),
+          actions: [
+            IconButton(
+              icon: Icon(Icons.send),
+              onPressed: () {
+                if (_formKey.currentState.validate()) {
+                  print(_name);
+                  print(_email);
+                  print(_phone);
+                  print(_message);
+                }
+              },
+            ),
+          ],
         ),
         body: Form(
           key: _formKey,
@@ -23,11 +35,12 @@ class ContactUs extends StatelessWidget {
               MyTextField(
                 labelText: "Name",
                 onChanged: (String name) => _name = name,
+                textCapitalization: TextCapitalization.words,
                 validator: (String value) {
                   if (value == null || value.trim() == "")
                     return "Please enter your name";
                 },
-                prefixIconData: Icons.account_circle,
+                prefixIconData: Icons.person,
               ),
               MyTextField(
                 labelText: "Email",
@@ -54,25 +67,16 @@ class ContactUs extends StatelessWidget {
               MyTextField(
                 labelText: "Message",
                 onChanged: (String message) => _message = message,
+                textCapitalization: TextCapitalization.sentences,
                 validator: (String value) {
                   if (value == null || value.trim() == "")
-                    return "Please enter message";
+                    return "Please enter the message";
                 },
-                prefixIconData: Icons.event_note,
+                enableMultilineText: true,
+                prefixIconData: Icons.message,
               ),
             ],
           ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.send),
-          onPressed: () {
-            if (_formKey.currentState.validate()) {
-              print(_name);
-              print(_email);
-              print(_phone);
-              print(_message);
-            }
-          },
         ),
       ),
     );
