@@ -1,12 +1,28 @@
 //sign up page along with google sign in button
 import 'package:flutter/material.dart';
 
+String emailIdErrorMessage = "";
+String passwordErrorMessage = "";
+
 class SignUp extends StatefulWidget {
   @override
   _SignUpState createState() => _SignUpState();
 }
 
 class _SignUpState extends State<SignUp> {
+  final email = TextEditingController();
+  final password = TextEditingController();
+  bool validityEmail = true;
+  bool validityPassword = true;
+
+  @override
+  void dispose() {
+    // Cleaning up controllers.
+    email.dispose();
+    password.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,6 +52,10 @@ class _SignUpState extends State<SignUp> {
               Padding(
                 padding: const EdgeInsets.only(left: 10, right: 10),
                 child: TextField(
+                  textInputAction: TextInputAction.next,
+                  onSubmitted: (v) {
+                    FocusScope.of(context).requestFocus();
+                  },
                   decoration: InputDecoration(
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.brown),
@@ -54,6 +74,12 @@ class _SignUpState extends State<SignUp> {
               Padding(
                 padding: const EdgeInsets.only(left: 10, right: 10),
                 child: TextField(
+                  controller: email,
+                  keyboardType: TextInputType.emailAddress,
+                  textInputAction: TextInputAction.next,
+                  onSubmitted: (v) {
+                    FocusScope.of(context).requestFocus();
+                  },
                   decoration: InputDecoration(
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.brown),
@@ -63,6 +89,7 @@ class _SignUpState extends State<SignUp> {
                       Icons.email,
                       color: Colors.brown,
                     ),
+                    errorText: validityEmail ? null : emailIdErrorMessage,
                   ),
                 ),
               ),
@@ -70,7 +97,8 @@ class _SignUpState extends State<SignUp> {
               Padding(
                 padding: const EdgeInsets.only(left: 10, right: 10),
                 child: TextField(
-                  keyboardType: TextInputType.emailAddress,
+                  controller: password,
+                  textInputAction: TextInputAction.done,
 
                   decoration: InputDecoration(
                     hoverColor: Colors.brown,
@@ -79,6 +107,7 @@ class _SignUpState extends State<SignUp> {
                     ),
                     hintText: 'Password',
                     icon: Icon(Icons.lock, color: Colors.brown),
+                    errorText: validityPassword ? null : passwordErrorMessage,
                   ),
                   obscureText:
                       true, //replaces password with bullets as we enter it
@@ -99,7 +128,12 @@ class _SignUpState extends State<SignUp> {
                       padding: EdgeInsets.only(left: 40, right: 40),
                       shape: StadiumBorder(),
                       color: Colors.green,
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          validityEmail = isValidEmail(email.text);
+                          validityPassword = isValidPassword(password.text);
+                        });
+                      },
                       child: Text('SIGN UP'),
                     ),
                     SizedBox(
@@ -121,4 +155,45 @@ class _SignUpState extends State<SignUp> {
       ),
     );
   }
+}
+
+bool isValidEmail(String email) {
+  //Function that VALIDATES ENTERED EMAIL ID
+
+  String p =
+      r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+  RegExp regExp = new RegExp(p);
+  if (email.isEmpty) {
+    //assigning error message to String variable emailIdErrorMessage
+    emailIdErrorMessage = "Please enter a Email-id";
+    return false;
+  } else if (!(regExp.hasMatch(email))) {
+    //assigning error message to String variable emailIdErrorMessage
+    emailIdErrorMessage = "Please enter a valid Email Address";
+    return false;
+  } else
+    return true;
+}
+
+bool isValidPassword(String password) {
+  //Function that VALIDATES ENTERED PASSWORD
+
+  String pattern =
+      r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
+  RegExp regExp = new RegExp(pattern);
+  if (password.isEmpty) {
+    //assigning error message to String variable passwordErrorMessage
+    passwordErrorMessage = "Please enter Password";
+    return false;
+  } else if (password.length < 8) {
+    //assigning error message to String variable passwordErrorMessage
+    passwordErrorMessage = "Password must contain at least 8 characters";
+    return false;
+  } else if (!(regExp.hasMatch(password))) {
+    //assigning error message to String variable passwordErrorMessage
+    passwordErrorMessage =
+        "Password must contain \n at least 1 upper case alphabet,\nat least one number \nand at least one special character \nalong with lowercase alphabets";
+    return false;
+  } else
+    return true;
 }
