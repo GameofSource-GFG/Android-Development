@@ -24,4 +24,6 @@ class MEMBER {
     this.speakerSession,
     this.instagramUrl,
   });
+
+
 }
