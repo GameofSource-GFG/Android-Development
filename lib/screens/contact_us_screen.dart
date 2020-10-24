@@ -13,6 +13,7 @@ class ContactUs extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: Text("Contact Us"),
+          backgroundColor: Color(0xFF2F8D46),
           actions: [
             IconButton(
               icon: Icon(Icons.send),

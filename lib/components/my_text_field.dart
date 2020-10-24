@@ -19,6 +19,8 @@ class MyTextField extends StatelessWidget {
     this.textCapitalization = TextCapitalization.none,
   });
 
+  static final kBackgroundColor = const Color(0xFF2F8D46);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,11 +28,11 @@ class MyTextField extends StatelessWidget {
       padding: EdgeInsets.all(10),
       margin: EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: Color(0xFF1d2d50),
+        color: kBackgroundColor,
         borderRadius: BorderRadius.circular(10),
         boxShadow: [
           BoxShadow(
-            color: Color(0xFF133b5c),
+            color: kBackgroundColor.withOpacity(0.7),
             blurRadius: 10,
             offset: Offset(0, 5),
           ),
@@ -50,7 +52,7 @@ class MyTextField extends StatelessWidget {
           prefixIcon: Icon(
             this.prefixIconData,
             size: 25,
-            color: Colors.grey,
+            color: Colors.white,
           ),
           border: InputBorder.none,
           hintText: "Enter ${this.labelText}",
