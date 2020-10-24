@@ -28,7 +28,7 @@ class _UpcomingEventsScreenState extends State<UpcomingEventsScreen> {
           future: this._upcomingEvents,
           builder: (context, snapshot) {
             if (snapshot.hasError) {
-              return Center(child: Icon(Icons.error));
+              return Center(child: Icon(Icons.error,color: Color(0xFF2F8D46),));
             } else if (snapshot.hasData) {
               return ListView.builder(
                 physics: BouncingScrollPhysics(),

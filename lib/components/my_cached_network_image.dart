@@ -18,7 +18,10 @@ class MyCachedNetworkImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(this.borderRadius),
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(this.borderRadius),
+          topRight: Radius.circular(this.borderRadius)
+      ),
       child: CachedNetworkImage(
         height: this.imageHeight,
         width: this.imageWidth,
@@ -31,7 +34,7 @@ class MyCachedNetworkImage extends StatelessWidget {
         ),
         errorWidget: (context, _, __) => Icon(
           Icons.error,
-          color: Colors.black,
+          color: Color(0xFF2F8D46),
           size: 50,
         ),
       ),

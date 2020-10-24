@@ -157,14 +157,19 @@ class _MembersState extends State<Members> {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  ConstrainedBox(
-                    constraints: BoxConstraints.expand(
-                      height: MediaQuery.of(context).size.height * 0.2,
-                      width: MediaQuery.of(context).size.width * 0.3,
+                  Container(
+                    decoration:BoxDecoration(
+                        border: Border.all(color:Color(0xFF2F8D46),width:2)
                     ),
-                    child: CachedNetworkImage(
-                        fit: BoxFit.cover,
-                        imageUrl: developers[i].speakerImage),
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints.expand(
+                        height: MediaQuery.of(context).size.height * 0.2,
+                        width: MediaQuery.of(context).size.width * 0.3,
+                      ),
+                      child: CachedNetworkImage(
+                          fit: BoxFit.cover,
+                          imageUrl: developers[i].speakerImage),
+                    ),
                   ),
                   SizedBox(
                     width: 20,
@@ -181,7 +186,7 @@ class _MembersState extends State<Members> {
                           children: <Widget>[
                             Text(
                               developers[i].speakerName,
-                              style: Theme.of(context).textTheme.headline1,
+                                style: Theme.of(context).textTheme.headline5,
                             ),
                             SizedBox(
                               height: 5,
