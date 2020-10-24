@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class About extends StatelessWidget {
+  static final String routeName = "/about";
+
   Future<dynamic> urlLauncher(String url) async // function for launching url
   {
     if (await canLaunch(url)) {
@@ -26,7 +28,7 @@ class About extends StatelessWidget {
                   'GeeksForGeeks Student Chapter',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      color: Colors.green,
+                      color: Color(0xFF2F8D46),
                       fontSize: 30,
                       fontWeight: FontWeight.bold),
                 ),
@@ -39,12 +41,12 @@ class About extends StatelessWidget {
               margin: EdgeInsets.only(top: 20),
               child: Center(
                   child: CircleAvatar(
-                backgroundColor: Colors.green,
+                backgroundColor: Color(0xFF2F8D46),
                 radius: 70,
                 child: CircleAvatar(
                   backgroundImage: AssetImage('assets/images/logo.jpeg'),
                   radius: 67,
-                  foregroundColor: Colors.green,
+                  foregroundColor: Color(0xFF2F8D46),
                 ),
               )),
             ),
@@ -59,12 +61,12 @@ class About extends StatelessWidget {
                     speed: Duration(milliseconds: 100),
                     repeatForever: true,
                     textStyle: TextStyle(
-                        color: Colors.green,
+                        color: Color(0xFF2F8D46),
                         fontSize: 30,
-                        fontFamily: 'Exo_2')),
+                        )),
                 Icon(
                   Icons.info,
-                  color: Colors.green,
+                  color: Color(0xFF2F8D46),
                   size: 30,
                 ),
               ],

@@ -1,143 +1,35 @@
 //committee members page
-import 'dart:math';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+
+import 'package:our_gfg/models/individual_member.dart';
 import 'package:our_gfg/models/members.dart';
-import 'package:our_gfg/utils/tools.dart';
-import 'package:url_launcher/url_launcher.dart';
+
 
 class Members extends StatefulWidget {
+  static final String routeName = "/members";
+
   @override
   _MembersState createState() => _MembersState();
 }
 
 class _MembersState extends State<Members> {
-  List<MEMBER> developers = [
-    MEMBER(
-      speakerImage: "",
-      speakerName: "MEMBER 1",
-      speakerDesc: "Developer",
-      speakerSession: "Team Lead and dev",
-      fbUrl: "",
-      githubUrl: "",
-      linkedinUrl: "",
-      twitterUrl: "",
-      instagramUrl: "",
-    ),
-    MEMBER(
-      speakerImage: "",
-      speakerName: "MEMBER 2",
-      speakerDesc: "Competetive coder",
-      speakerSession: "Manager for project",
-      fbUrl: "",
-      githubUrl: "",
-      linkedinUrl: "",
-      twitterUrl: "",
-      instagramUrl: "",
-    ),
-    MEMBER(
-      speakerImage: "",
-      speakerName: "MEMBER 3",
-      speakerDesc: "Sr. Developer",
-      speakerSession: "debugger for project___",
-      fbUrl: "",
-      githubUrl: "",
-      twitterUrl: "",
-      linkedinUrl: "",
-      instagramUrl: "",
-    ),
-    MEMBER(
-      speakerImage: "",
-      speakerName: "MEMBER 4",
-      speakerDesc: "UI/UX",
-      speakerSession: "designer for project",
-      fbUrl: "",
-      githubUrl: "",
-      linkedinUrl: "",
-      twitterUrl: "",
-      instagramUrl: "",
-    ),
-    MEMBER(
-      speakerImage: "",
-      speakerName: "MEMBER 5",
-      speakerDesc: "Data Scientist",
-      speakerSession: "Error handler for project__",
-      fbUrl: "",
-      githubUrl: "",
-      linkedinUrl: "",
-      twitterUrl: "",
-      instagramUrl: "",
-    ),
-    MEMBER(
-      speakerImage: "",
-      speakerName: "MEMBER 6",
-      speakerDesc: "Cloud Enthusiast",
-      speakerSession: "Deploy web-apps onto any services",
-      fbUrl: "",
-      githubUrl: "",
-      linkedinUrl: "",
-      twitterUrl: "",
-      instagramUrl: "",
-    ),
-  ];
-  Widget socialActions(context, MEMBER developers) => FittedBox(
-        child: Row(
-          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            if (developers.fbUrl != null)
-              IconButton(
-                icon: Icon(
-                  FontAwesomeIcons.facebookF,
-                  size: 15,
-                ),
-                onPressed: () {
-                  launch(developers.fbUrl);
-                },
-              ),
-            if (developers.instagramUrl != null)
-              IconButton(
-                icon: Icon(
-                  FontAwesomeIcons.instagram,
-                  size: 15,
-                ),
-                onPressed: () {
-                  launch(developers.instagramUrl);
-                },
-              ),
-            if (developers.twitterUrl != null)
-              IconButton(
-                icon: Icon(
-                  FontAwesomeIcons.twitter,
-                  size: 15,
-                ),
-                onPressed: () {
-                  launch(developers.twitterUrl);
-                },
-              ),
-            if (developers.githubUrl != null)
-              IconButton(
-                icon: Icon(
-                  FontAwesomeIcons.github,
-                  size: 15,
-                ),
-                onPressed: () {
-                  launch(developers.githubUrl);
-                },
-              ),
-            if (developers.linkedinUrl != null)
-              IconButton(
-                icon: Icon(
-                  FontAwesomeIcons.linkedin,
-                  size: 15,
-                ),
-                onPressed: () {
-                  launch(developers.linkedinUrl);
-                },
-              )
-          ],
-        ),
-      );
+  List<MEMBER> _recordFromSnapshots(QuerySnapshot snapshot) {
+    return snapshot.docs.map((doc) {
+      return MEMBER(
+          speakerImage: doc.data()["speakerImage"] ?? "Not Available",
+          speakerName: doc.data()["speakerName"] ?? "Not Available",
+          speakerDesc: doc.data()["speakerDesc"] ?? "Not Available",
+          speakerSession: doc.data()["speakerSession"] ?? "Not Available",
+          fbUrl: doc.data()["fbUrl"] ?? "Not Available",
+          githubUrl: doc.data()["githubUrl"] ?? "Not Available",
+          linkedinUrl: doc.data()["linkedinUrl"] ?? "Not Available",
+          twitterUrl: doc.data()["twitterUrl"] ?? "Not Available",
+          instagramUrl: doc.data()["twitterUrl"] ?? "Not Available");
+    }).toList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -147,75 +39,57 @@ class _MembersState extends State<Members> {
         ),
         centerTitle: true,
       ),
-      body: ListView.builder(
-        shrinkWrap: true,
-        itemBuilder: (c, i) {
-          return Card(
-            elevation: 0.0,
-            child: Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  ConstrainedBox(
-                    constraints: BoxConstraints.expand(
-                      height: MediaQuery.of(context).size.height * 0.2,
-                      width: MediaQuery.of(context).size.width * 0.3,
+
+      body: StreamBuilder<List<MEMBER>>(
+        stream: FirebaseFirestore.instance
+            .collection("members")
+            .orderBy("speakerName")
+            .snapshots()
+            .map(_recordFromSnapshots),
+        // ignore: missing_return
+        builder: (context, snapshot) {
+          switch (snapshot.connectionState) {
+            case ConnectionState.active:
+              {
+                if (snapshot.hasData) {
+                  return Container(
+                    child: ListView.builder(
+                      itemBuilder: (context, i) {
+                        return IndividualMember(member: snapshot.data[i]);
+                      },
+                      itemCount: snapshot.data.length,
+
                     ),
-                    child: CachedNetworkImage(
-                        fit: BoxFit.cover,
-                        imageUrl: developers[i].speakerImage),
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.min,
-                          children: <Widget>[
-                            Text(
-                              developers[i].speakerName,
-                              style: Theme.of(context).textTheme.headline1,
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            AnimatedContainer(
-                              duration: Duration(seconds: 1),
-                              width: MediaQuery.of(context).size.width * 0.2,
-                              height: 5,
-                              color: Tools.multiColors[Random().nextInt(4)],
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(developers[i].speakerDesc,
-                            style: Theme.of(context).textTheme.headline6),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          developers[i].speakerSession,
-                          style: Theme.of(context).textTheme.caption,
-                        ),
-                        socialActions(context, developers[i]),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
-          );
+                  );
+                }
+                if (snapshot.hasError) {
+                  return Center(
+                    child: Text(snapshot.error.toString()),
+                  );
+                }
+              }
+              break;
+            case ConnectionState.none:
+              return Center(
+                child: Text("Nothing Happening"),
+              );
+              break;
+            case ConnectionState.waiting:
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+              break;
+            case ConnectionState.done:
+              return Center(
+                child: Text("Connection Established"),
+              );
+              break;
+            default:
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+          }
         },
-        itemCount: developers.length,
       ),
     );
   }
