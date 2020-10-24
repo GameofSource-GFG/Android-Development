@@ -73,7 +73,7 @@ class IndividualMember extends StatelessWidget {
                     children: <Widget>[
                       Text(
                         member.speakerName,
-                        style: Theme.of(context).textTheme.title,
+                        style: Theme.of(context).textTheme.headline6,
                       ),
                       SizedBox(
                         height: 5,
