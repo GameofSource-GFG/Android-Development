@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
 
-class appDrawer extends StatefulWidget {
+class CustomAppDrawer extends StatefulWidget {
   @override
-  _appDrawerState createState() => _appDrawerState();
+  _CustomAppDrawerState createState() => _CustomAppDrawerState();
 }
 
-class _appDrawerState extends State<appDrawer> {
+class _CustomAppDrawerState extends State<CustomAppDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -23,7 +23,7 @@ class _appDrawerState extends State<appDrawer> {
 
                   )
                 ),
-
+                child: null,
             ),
 
             InkWell(
