@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class MissionAndVision extends StatefulWidget {
   static final String routeName = "/mission";
+
   @override
   _MissionAndVisionState createState() => _MissionAndVisionState();
 }

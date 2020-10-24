@@ -5,6 +5,7 @@ import 'package:our_gfg/services/firebase_storage_service.dart';
 
 class UpcomingEventsScreen extends StatefulWidget {
   static final String routeName = "/upcoming_events";
+
   @override
   _UpcomingEventsScreenState createState() => _UpcomingEventsScreenState();
 }

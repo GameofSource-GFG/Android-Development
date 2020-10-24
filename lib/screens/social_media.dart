@@ -5,6 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 class SocialMediaLinks extends StatefulWidget {
   static final String routeName = "/socialmedia";
+
   @override
   _SocialMediaLinksState createState() => _SocialMediaLinksState();
 }
