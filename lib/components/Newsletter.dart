@@ -7,6 +7,7 @@ class Newsletter extends StatefulWidget {
 
 class _NewsletterState extends State<Newsletter> {
   @override
+  // ignore: override_on_non_overriding_member
   final _formKey = GlobalKey<FormState>();
 
   Widget build(BuildContext context) {
