@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class About extends StatelessWidget {
+  static final String routeName = "/about";
+
   Future<dynamic> urlLauncher(String url) async // function for launching url
   {
     if (await canLaunch(url)) {

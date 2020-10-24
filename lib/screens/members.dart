@@ -8,6 +8,8 @@ import 'package:our_gfg/utils/tools.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Members extends StatefulWidget {
+  static final String routeName = "/members";
+
   @override
   _MembersState createState() => _MembersState();
 }

@@ -1,6 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:our_gfg/screens/LoginScreen.dart';
+import 'package:our_gfg/screens/about_screen.dart';
+import 'package:our_gfg/screens/members.dart';
+import 'package:our_gfg/screens/mission.dart';
+import 'package:our_gfg/screens/sign_up.dart';
+import 'package:our_gfg/screens/social_media.dart';
+import 'package:our_gfg/screens/upcoming_events_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,6 +25,15 @@ class MyApp extends StatelessWidget {
         accentColor: kMainColor,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
+      routes: {
+        About.routeName: (context) => About(),
+        LoginScreen.routeName: (context) => LoginScreen(),
+        Members.routeName: (context) => Members(),
+        MissionAndVision.routeName: (context) => MissionAndVision(),
+        SignUp.routeName: (context) => SignUp(),
+        SocialMediaLinks.routeName: (context) => SocialMediaLinks(),
+        UpcomingEventsScreen.routeName: (context) => UpcomingEventsScreen()
+      },
       home: LoginScreen(),
     );
   }
