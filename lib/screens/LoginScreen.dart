@@ -73,20 +73,19 @@ class _LoginScreenState extends State<LoginScreen> {
                 },
                 decoration: InputDecoration(
                     filled: true,
-                    fillColor: Colors.teal.withOpacity(0.2),
+                    fillColor: Color(0xFF2F8D46).withOpacity(0.2),
                     hintText: 'Email',
                     hintStyle: TextStyle(
-                        fontFamily: 'Montserrat',
                         color: Colors.black.withOpacity(0.6)),
-                    prefixIcon: Icon(Icons.person, color: Colors.teal),
+                    prefixIcon: Icon(Icons.person, color: Color(0xFF2F8D46)),
                     enabledBorder: OutlineInputBorder(
                       borderSide:
-                          BorderSide(color: Colors.teal.withOpacity(0.2)),
+                          BorderSide(color: Color(0xFF2F8D46).withOpacity(0.2)),
                       borderRadius: BorderRadius.circular(20.0),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderSide:
-                          BorderSide(color: Colors.teal.withOpacity(0.2)),
+                          BorderSide(color: Color(0xFF2F8D46).withOpacity(0.2)),
                       borderRadius: BorderRadius.circular(20.0),
                     ),
                     errorText: validityEmail ? null : emailIdErrorMessage,
@@ -114,11 +113,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 textInputAction: TextInputAction.done,
                 decoration: InputDecoration(
                     filled: true,
-                    fillColor: Colors.teal.withOpacity(0.2),
+                    fillColor: Color(0xFF2F8D46).withOpacity(0.2),
                     hintText: 'Password',
                     hintStyle: TextStyle(
-                        fontFamily: 'Montserrat',
-                        color: Colors.black.withOpacity(0.6)),
+                      color: Colors.black.withOpacity(0.6)),
                     errorText: validityPassword ? null : passwordErrorMessage,
                     //here string stored in emailIdErrorMessage is displayed if boolean variable validityEmail is false
 
@@ -133,15 +131,15 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       borderRadius: BorderRadius.circular(20.0),
                     ),
-                    prefixIcon: Icon(Icons.lock, color: Colors.teal),
+                    prefixIcon: Icon(Icons.lock, color: Color(0xFF2F8D46)),
                     enabledBorder: OutlineInputBorder(
                       borderSide:
-                          BorderSide(color: Colors.teal.withOpacity(0.2)),
+                          BorderSide(color: Color(0xFF2F8D46).withOpacity(0.2)),
                       borderRadius: BorderRadius.circular(20.0),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderSide:
-                          BorderSide(color: Colors.teal.withOpacity(0.2)),
+                          BorderSide(color: Color(0xFF2F8D46).withOpacity(0.2)),
                       borderRadius: BorderRadius.circular(20.0),
                     )),
                 obscureText: true,
@@ -177,10 +175,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     "LOGIN",
                     style: TextStyle(
                         fontSize: 17.0,
-                        fontFamily: 'Montserrat',
                         color: Colors.white),
                   ),
-                  color: new Color(0xFF0DD6BB)),
+                //Color(0xFF0DD6BB)
+                color: new Color(0xFF2F8D46))
             ),
             SizedBox(height: 10.0),
             Row(
@@ -189,7 +187,7 @@ class _LoginScreenState extends State<LoginScreen> {
               children: <Widget>[
                 Text(
                   "Don't have a account yet?",
-                  style: TextStyle(fontFamily: 'Montserrat'),
+                  style: TextStyle(),
                 ),
                 SizedBox(width: 5.0),
                 InkWell(
@@ -199,14 +197,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Text(
                     'Register Now',
                     style: TextStyle(
-                        color: Colors.teal,
-                        fontFamily: 'Montserrat',
+                        color: Color(0xFF2F8D46),
                         fontWeight: FontWeight.bold,
                         decoration: TextDecoration.underline),
                   ),
                 )
               ],
-            )
+            ),
+
           ],
         ),
       ),
@@ -254,3 +252,4 @@ bool isValidPassword(String password) {
   } else
     return true;
 }
+

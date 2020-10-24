@@ -129,7 +129,7 @@ class _SignUpState extends State<SignUp> {
                     RaisedButton(
                       padding: EdgeInsets.only(left: 40, right: 40),
                       shape: StadiumBorder(),
-                      color: Colors.green,
+                      color: Color(0xFF2F8D46),
                       onPressed: () {
                         setState(() {
                           validityEmail = isValidEmail(email.text);
@@ -144,7 +144,7 @@ class _SignUpState extends State<SignUp> {
                     RaisedButton(
                       padding: EdgeInsets.only(left: 40, right: 40),
                       shape: StadiumBorder(),
-                      color: Colors.green,
+                      color: Color(0xFF2F8D46),
                       onPressed: () {},
                       child: Text('Sign In With Google'),
                     ),

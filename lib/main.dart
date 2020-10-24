@@ -15,7 +15,7 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  final kMainColor = Color(0xFF1d2d50);
+  final kMainColor = Color(0xFF2F8D46);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         appBarTheme: AppBarTheme(color: kMainColor),
         accentColor: kMainColor,
+        primaryColor: Colors.white,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       routes: {
