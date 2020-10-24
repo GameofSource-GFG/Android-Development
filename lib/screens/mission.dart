@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 class MissionAndVision extends StatefulWidget {
+  static final String routeName = "/mission";
+
   @override
   _MissionAndVisionState createState() => _MissionAndVisionState();
 }
