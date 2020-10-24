@@ -2,10 +2,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+
 import 'package:our_gfg/models/individual_member.dart';
 import 'package:our_gfg/models/members.dart';
 
+
 class Members extends StatefulWidget {
+  static final String routeName = "/members";
+
   @override
   _MembersState createState() => _MembersState();
 }
@@ -35,6 +39,7 @@ class _MembersState extends State<Members> {
         ),
         centerTitle: true,
       ),
+
       body: StreamBuilder<List<MEMBER>>(
         stream: FirebaseFirestore.instance
             .collection("members")
@@ -53,6 +58,7 @@ class _MembersState extends State<Members> {
                         return IndividualMember(member: snapshot.data[i]);
                       },
                       itemCount: snapshot.data.length,
+
                     ),
                   );
                 }
