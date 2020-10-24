@@ -5,6 +5,7 @@ String emailIdErrorMessage = "";
 String passwordErrorMessage = "";
 
 class SignUp extends StatefulWidget {
+  static final String routeName = "/sign_up";
   @override
   _SignUpState createState() => _SignUpState();
 }
