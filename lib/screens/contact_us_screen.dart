@@ -3,6 +3,8 @@ import 'package:our_gfg/components/my_text_field.dart';
 
 // ignore: must_be_immutable
 class ContactUs extends StatelessWidget {
+  static final String routeName = "/contact_us";
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   String _name, _email, _phone, _message;

@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:our_gfg/screens/LoginScreen.dart';
 import 'package:our_gfg/screens/about_screen.dart';
+import 'package:our_gfg/screens/contact_us_screen.dart';
 import 'package:our_gfg/screens/members.dart';
 import 'package:our_gfg/screens/mission.dart';
 import 'package:our_gfg/screens/sign_up.dart';
@@ -33,7 +34,8 @@ class MyApp extends StatelessWidget {
         MissionAndVision.routeName: (context) => MissionAndVision(),
         SignUp.routeName: (context) => SignUp(),
         SocialMediaLinks.routeName: (context) => SocialMediaLinks(),
-        UpcomingEventsScreen.routeName: (context) => UpcomingEventsScreen()
+        UpcomingEventsScreen.routeName: (context) => UpcomingEventsScreen(),
+        ContactUs.routeName: (context) => ContactUs(),
       },
       home: LoginScreen(),
     );
