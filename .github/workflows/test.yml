@@ -29,3 +29,12 @@ jobs:
       run: flutter analyze
 #     - name: Run tests
 #       run: pub run test
+    - name: Build APK
+      run: flutter build apk
+    - name: Upload generated apk to the artifacts.
+      uses: actions/upload-artifact@v1
+      with:
+        name: release-apk
+        path: build/app/outputs/apk/release/app-release.apk
+
+
