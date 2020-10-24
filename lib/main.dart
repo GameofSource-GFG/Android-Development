@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         SocialMediaLinks.routeName: (context) => SocialMediaLinks(),
         UpcomingEventsScreen.routeName: (context) => UpcomingEventsScreen()
       },
-      initialRoute: UpcomingEventsScreen.routeName,
+      home: LoginScreen(),
     );
   }
 }
