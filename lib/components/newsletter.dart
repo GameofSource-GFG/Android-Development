@@ -9,7 +9,14 @@ class Newsletter extends StatefulWidget {
 
 class _NewsletterState extends State<Newsletter> {
   final _formKey = GlobalKey<FormState>();
-  String _email;
+
+  final TextEditingController _emailController = TextEditingController();
+
+  @override
+  void dispose() {
+    super.dispose();
+    _emailController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +68,7 @@ class _NewsletterState extends State<Newsletter> {
                             decoration: const InputDecoration(
                               hintText: 'Enter your email',
                             ),
-                            onChanged: (value) => _email = value,
+                            controller: _emailController,
                             validator: (String value) {
                               String pattern =
                                   r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
@@ -83,8 +90,9 @@ class _NewsletterState extends State<Newsletter> {
                                 if (_formKey.currentState.validate()) {
                                   try {
                                     await FirebaseStorageService.subscribeToNewsletter(
-                                        _email?.trim()
+                                        _emailController.text?.trim()
                                     );
+                                    _emailController.clear();
                                     Fluttertoast.showToast(msg: "Subscribed successfully");
                                   }catch(e) {
                                     Fluttertoast.showToast(msg: "An error occurred. Please try again later");
