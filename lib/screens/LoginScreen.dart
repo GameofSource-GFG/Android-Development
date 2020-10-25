@@ -1,5 +1,11 @@
 //User Login screen for the app
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:our_gfg/services/firebase_auth_service.dart';
+
+import 'sign_up.dart';
+import 'upcoming_events_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   static final String routeName = "/login";
@@ -73,20 +79,19 @@ class _LoginScreenState extends State<LoginScreen> {
                 },
                 decoration: InputDecoration(
                     filled: true,
-                    fillColor: Colors.teal.withOpacity(0.2),
+                    fillColor: Color(0xFF2F8D46).withOpacity(0.2),
                     hintText: 'Email',
                     hintStyle: TextStyle(
-                        fontFamily: 'Montserrat',
                         color: Colors.black.withOpacity(0.6)),
-                    prefixIcon: Icon(Icons.person, color: Colors.teal),
+                    prefixIcon: Icon(Icons.person, color: Color(0xFF2F8D46)),
                     enabledBorder: OutlineInputBorder(
                       borderSide:
-                          BorderSide(color: Colors.teal.withOpacity(0.2)),
+                          BorderSide(color: Color(0xFF2F8D46).withOpacity(0.2)),
                       borderRadius: BorderRadius.circular(20.0),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderSide:
-                          BorderSide(color: Colors.teal.withOpacity(0.2)),
+                          BorderSide(color: Color(0xFF2F8D46).withOpacity(0.2)),
                       borderRadius: BorderRadius.circular(20.0),
                     ),
                     errorText: validityEmail ? null : emailIdErrorMessage,
@@ -114,11 +119,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 textInputAction: TextInputAction.done,
                 decoration: InputDecoration(
                     filled: true,
-                    fillColor: Colors.teal.withOpacity(0.2),
+                    fillColor: Color(0xFF2F8D46).withOpacity(0.2),
                     hintText: 'Password',
                     hintStyle: TextStyle(
-                        fontFamily: 'Montserrat',
-                        color: Colors.black.withOpacity(0.6)),
+                      color: Colors.black.withOpacity(0.6)),
                     errorText: validityPassword ? null : passwordErrorMessage,
                     //here string stored in emailIdErrorMessage is displayed if boolean variable validityEmail is false
 
@@ -133,15 +137,15 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       borderRadius: BorderRadius.circular(20.0),
                     ),
-                    prefixIcon: Icon(Icons.lock, color: Colors.teal),
+                    prefixIcon: Icon(Icons.lock, color: Color(0xFF2F8D46)),
                     enabledBorder: OutlineInputBorder(
                       borderSide:
-                          BorderSide(color: Colors.teal.withOpacity(0.2)),
+                          BorderSide(color: Color(0xFF2F8D46).withOpacity(0.2)),
                       borderRadius: BorderRadius.circular(20.0),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderSide:
-                          BorderSide(color: Colors.teal.withOpacity(0.2)),
+                          BorderSide(color: Color(0xFF2F8D46).withOpacity(0.2)),
                       borderRadius: BorderRadius.circular(20.0),
                     )),
                 obscureText: true,
@@ -163,24 +167,38 @@ class _LoginScreenState extends State<LoginScreen> {
                   minWidth: MediaQuery.of(context).size.width,
                   shape: RoundedRectangleBorder(
                       borderRadius: new BorderRadius.circular(20)),
-                  onPressed: () {
+                  onPressed: () async{
                     setState(() {
                       //storing value returned by validating functions into boolean variables
                       validityEmail = isValidEmail(email.text);
                       validityPassword = isValidPassword(password.text);
                     });
                     if (validityEmail && validityPassword) {
-                      //authenticate and navigate to next screen
+                     try {
+                       await FirebaseAuthService.loginUser(
+                         email: email.text?.trim(),
+                         password: password.text,
+                       );
+
+                       Navigator.pushReplacementNamed(
+                         context,
+                         UpcomingEventsScreen.routeName,
+                       );
+                     }on FirebaseAuthException catch(e) {
+                       Fluttertoast.showToast(msg: e.message);
+                     } catch(e) {
+                       Fluttertoast.showToast(msg: "An error occurred. Please try again later");
+                     }
                     }
                   },
                   child: Text(
                     "LOGIN",
                     style: TextStyle(
                         fontSize: 17.0,
-                        fontFamily: 'Montserrat',
                         color: Colors.white),
                   ),
-                  color: new Color(0xFF0DD6BB)),
+                //Color(0xFF0DD6BB)
+                color: new Color(0xFF2F8D46))
             ),
             SizedBox(height: 10.0),
             Row(
@@ -189,24 +207,24 @@ class _LoginScreenState extends State<LoginScreen> {
               children: <Widget>[
                 Text(
                   "Don't have a account yet?",
-                  style: TextStyle(fontFamily: 'Montserrat'),
+                  style: TextStyle(),
                 ),
                 SizedBox(width: 5.0),
                 InkWell(
                   onTap: () {
-                    //navigate to the registration page
+                    Navigator.pushNamed(context, SignUp.routeName);
                   },
                   child: Text(
                     'Register Now',
                     style: TextStyle(
-                        color: Colors.teal,
-                        fontFamily: 'Montserrat',
+                        color: Color(0xFF2F8D46),
                         fontWeight: FontWeight.bold,
                         decoration: TextDecoration.underline),
                   ),
                 )
               ],
-            )
+            ),
+
           ],
         ),
       ),
@@ -254,3 +272,4 @@ bool isValidPassword(String password) {
   } else
     return true;
 }
+
