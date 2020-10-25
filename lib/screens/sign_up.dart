@@ -1,25 +1,85 @@
 //sign up page along with google sign in button
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:our_gfg/screens/upcoming_events_screen.dart';
 
 String emailIdErrorMessage = "";
 String passwordErrorMessage = "";
 
 class SignUp extends StatefulWidget {
-  static final String routeName = "/sign_up";
-
   @override
   _SignUpState createState() => _SignUpState();
 }
 
 class _SignUpState extends State<SignUp> {
+  final _formKey = GlobalKey<FormState>();
+  FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  //DatabaseReference dbRef = FirebaseDatabase.instance.reference().child("Users");
+  TextEditingController nameController = TextEditingController();
+
+  //google sign-in
+  bool _isLoggedIn = false;
+
+  GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
+
+  _login() async {
+    try {
+      await _googleSignIn.signIn();
+      setState(() {
+        _isLoggedIn = true;
+      });
+    } catch (err) {
+      print(err);
+    }
+  }
+
+  _logout() {
+    _googleSignIn.signOut();
+    setState(
+      () {
+        _isLoggedIn = false;
+      },
+    );
+  }
+
   final email = TextEditingController();
   final password = TextEditingController();
   bool validityEmail = true;
   bool validityPassword = true;
+//email sign-up method
+  void registerToFb() {
+    firebaseAuth
+        .createUserWithEmailAndPassword(
+            email: email.text, password: password.text)
+        .then((result) {})
+        .catchError(
+      (err) {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text("Error"),
+              content: Text(err.message),
+              actions: [
+                FlatButton(
+                  child: Text("Ok"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                )
+              ],
+            );
+          },
+        );
+      },
+    );
+  }
 
   @override
   void dispose() {
     // Cleaning up controllers.
+    nameController.dispose();
     email.dispose();
     password.dispose();
     super.dispose();
@@ -131,10 +191,18 @@ class _SignUpState extends State<SignUp> {
                       shape: StadiumBorder(),
                       color: Colors.green,
                       onPressed: () {
-                        setState(() {
-                          validityEmail = isValidEmail(email.text);
-                          validityPassword = isValidPassword(password.text);
-                        });
+                        setState(
+                          () {
+                            validityEmail = isValidEmail(email.text);
+                            validityPassword = isValidPassword(password.text);
+                            registerToFb();
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => UpcomingEventsScreen()),
+                            );
+                          },
+                        );
                       },
                       child: Text('SIGN UP'),
                     ),
@@ -145,7 +213,9 @@ class _SignUpState extends State<SignUp> {
                       padding: EdgeInsets.only(left: 40, right: 40),
                       shape: StadiumBorder(),
                       color: Colors.green,
-                      onPressed: () {},
+                      onPressed: () {
+                        _login();
+                      },
                       child: Text('Sign In With Google'),
                     ),
                   ],
