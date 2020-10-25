@@ -13,4 +13,10 @@ class FirebaseStorageService {
       _events.add(Event.fromDocumentSnapshot(docSnapshot));
     return _events;
   }
+
+  static Future<void> subscribeToNewsletter(String email) async {
+    return await _firestore.collection("newsletter").doc("users").set({
+      'emails': FieldValue.arrayUnion([email])
+    }, SetOptions(merge: true));
+  }
 }
