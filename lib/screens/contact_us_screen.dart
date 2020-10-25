@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:our_gfg/components/my_text_field.dart';
+import 'package:our_gfg/services/firebase_storage_service.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 // ignore: must_be_immutable
 class ContactUs extends StatelessWidget {
@@ -17,17 +19,27 @@ class ContactUs extends StatelessWidget {
           title: Text("Contact Us"),
           backgroundColor: Color(0xFF2F8D46),
           actions: [
+            // submit form button
             IconButton(
-              icon: Icon(Icons.send),
-              onPressed: () {
-                if (_formKey.currentState.validate()) {
-                  print(_name);
-                  print(_email);
-                  print(_phone);
-                  print(_message);
-                }
-              },
-            ),
+                icon: Icon(Icons.send),
+                onPressed: () {
+                  if (_formKey.currentState.validate()) {
+                    FirebaseStorageService.contactFormHandler(
+                        _name, _email, _phone, _message)
+                        .then((value) {
+                      _formKey.currentState.reset();
+                      Fluttertoast.showToast(
+                          backgroundColor: Color(0xFF2F8D46),
+                          msg: "Your response has been recorded!");
+                    }).catchError((error) {
+                      print(error);
+                    });
+                  } else {
+                    Fluttertoast.showToast(
+                        msg: "Please enter valid data!",
+                        backgroundColor: Color(0xFF2F8D46));
+                  }
+                }),
           ],
         ),
         body: Form(
