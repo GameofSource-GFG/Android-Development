@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:our_gfg/services/firebase_storage_service.dart';
 
 class Newsletter extends StatefulWidget {
   @override
@@ -6,10 +8,10 @@ class Newsletter extends StatefulWidget {
 }
 
 class _NewsletterState extends State<Newsletter> {
-  @override
-  // ignore: override_on_non_overriding_member
   final _formKey = GlobalKey<FormState>();
+  String _email;
 
+  @override
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
@@ -59,6 +61,7 @@ class _NewsletterState extends State<Newsletter> {
                             decoration: const InputDecoration(
                               hintText: 'Enter your email',
                             ),
+                            onChanged: (value) => _email = value,
                             validator: (String value) {
                               String pattern =
                                   r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
@@ -76,8 +79,17 @@ class _NewsletterState extends State<Newsletter> {
                           child: Center(
                             child: RaisedButton(
                               color: Color.fromRGBO(47, 141, 70, 1),
-                              onPressed: () {
-                                if (_formKey.currentState.validate()) {}
+                              onPressed: () async{
+                                if (_formKey.currentState.validate()) {
+                                  try {
+                                    await FirebaseStorageService.subscribeToNewsletter(
+                                        _email?.trim()
+                                    );
+                                    Fluttertoast.showToast(msg: "Subscribed successfully");
+                                  }catch(e) {
+                                    Fluttertoast.showToast(msg: "An error occurred. Please try again later");
+                                  }
+                                }
                               },
                               child: Text(
                                 'Subscribe',
