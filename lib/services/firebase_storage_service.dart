@@ -23,4 +23,10 @@ class FirebaseStorageService {
       "message": message
     });
   }
+  
+  static Future<void> subscribeToNewsletter(String email) async {
+    return await _firestore.collection("newsletter").doc("users").set({
+      'emails': FieldValue.arrayUnion([email])
+    }, SetOptions(merge: true));
+  }
 }
