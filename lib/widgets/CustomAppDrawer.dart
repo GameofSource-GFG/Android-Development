@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:our_gfg/screens/contact_us_screen.dart';
+
+import '../screens/about_screen.dart';
+import '../screens/members.dart';
+import '../screens/upcoming_events_screen.dart';
 
 
 class CustomAppDrawer extends StatefulWidget {
@@ -27,7 +32,9 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
             ),
 
             InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, UpcomingEventsScreen.routeName);
+              },
               child: ListTile(
                 title: Text("Home" ,),
                 // style: TextStyle(color: Colors.white),
@@ -42,7 +49,10 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
             ),
 
             InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, UpcomingEventsScreen.routeName);
+
+              },
               child: ListTile(
                 title: Text("Events" , ),
                 leading: Icon(
@@ -55,7 +65,10 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
               color: Color.fromRGBO(47,141,70,1),
             ),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, ContactUs.routeName);
+
+              },
               child: ListTile(
                 title: Text("Contact Us" , ),
                 leading: Icon(
@@ -68,7 +81,10 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
               color: Color.fromRGBO(47,141,70,1),
             ),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, Members.routeName);
+
+              },
               child: ListTile(
                 title: Text("Team" , ),
                 leading: Icon(
@@ -82,7 +98,10 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
               color: Color.fromRGBO(47,141,70,1),
             ),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, About.routeName  );
+
+              },
               child: ListTile(
                 title: Text("About Us" , ),
                 leading: Icon(
