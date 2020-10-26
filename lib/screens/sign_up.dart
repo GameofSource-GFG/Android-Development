@@ -8,6 +8,7 @@ String emailIdErrorMessage = "";
 String passwordErrorMessage = "";
 
 class SignUp extends StatefulWidget {
+     static final String routeName = "/sign_up";
   @override
   _SignUpState createState() => _SignUpState();
 }
@@ -52,7 +53,11 @@ class _SignUpState extends State<SignUp> {
     firebaseAuth
         .createUserWithEmailAndPassword(
             email: email.text, password: password.text)
-        .then((result) {})
+        .then((result) {Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => UpcomingEventsScreen()),
+      );
+     })
         .catchError(
       (err) {
         showDialog(
@@ -196,11 +201,7 @@ class _SignUpState extends State<SignUp> {
                             validityEmail = isValidEmail(email.text);
                             validityPassword = isValidPassword(password.text);
                             registerToFb();
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => UpcomingEventsScreen()),
-                            );
+                            
                           },
                         );
                       },
