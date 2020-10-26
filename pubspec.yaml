@@ -22,6 +22,7 @@ dependencies:
   firebase_auth: ^0.18.1+2
   google_sign_in: ^4.5.5
   firebase_database: ^4.1.1
+  fluttertoast: ^7.1.1
 
 dev_dependencies:
   google_fonts: ^1.1.1
