@@ -1,5 +1,11 @@
 //User Login screen for the app
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:our_gfg/services/firebase_auth_service.dart';
+
+import 'sign_up.dart';
+import 'upcoming_events_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   static final String routeName = "/login";
@@ -161,14 +167,28 @@ class _LoginScreenState extends State<LoginScreen> {
                   minWidth: MediaQuery.of(context).size.width,
                   shape: RoundedRectangleBorder(
                       borderRadius: new BorderRadius.circular(20)),
-                  onPressed: () {
+                  onPressed: () async{
                     setState(() {
                       //storing value returned by validating functions into boolean variables
                       validityEmail = isValidEmail(email.text);
                       validityPassword = isValidPassword(password.text);
                     });
                     if (validityEmail && validityPassword) {
-                      //authenticate and navigate to next screen
+                     try {
+                       await FirebaseAuthService.loginUser(
+                         email: email.text?.trim(),
+                         password: password.text,
+                       );
+
+                       Navigator.pushReplacementNamed(
+                         context,
+                         UpcomingEventsScreen.routeName,
+                       );
+                     }on FirebaseAuthException catch(e) {
+                       Fluttertoast.showToast(msg: e.message);
+                     } catch(e) {
+                       Fluttertoast.showToast(msg: "An error occurred. Please try again later");
+                     }
                     }
                   },
                   child: Text(
@@ -192,7 +212,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(width: 5.0),
                 InkWell(
                   onTap: () {
-                    //navigate to the registration page
+                    Navigator.pushNamed(context, SignUp.routeName);
                   },
                   child: Text(
                     'Register Now',
