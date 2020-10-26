@@ -2,10 +2,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-
-import 'package:our_gfg/models/individual_member.dart';
-import 'package:our_gfg/models/members.dart';
-
+import '../models/individual_member.dart';
+import '../models/members.dart';
 
 class Members extends StatefulWidget {
   static final String routeName = "/members";
@@ -15,9 +13,9 @@ class Members extends StatefulWidget {
 }
 
 class _MembersState extends State<Members> {
-  List<MEMBER> _recordFromSnapshots(QuerySnapshot snapshot) {
+  List<Member> _recordFromSnapshots(QuerySnapshot snapshot) {
     return snapshot.docs.map((doc) {
-      return MEMBER(
+      return Member(
           speakerImage: doc.data()["speakerImage"] ?? "Not Available",
           speakerName: doc.data()["speakerName"] ?? "Not Available",
           speakerDesc: doc.data()["speakerDesc"] ?? "Not Available",
@@ -39,8 +37,7 @@ class _MembersState extends State<Members> {
         ),
         centerTitle: true,
       ),
-
-      body: StreamBuilder<List<MEMBER>>(
+      body: StreamBuilder<List<Member>>(
         stream: FirebaseFirestore.instance
             .collection("members")
             .orderBy("speakerName")
@@ -58,7 +55,6 @@ class _MembersState extends State<Members> {
                         return IndividualMember(member: snapshot.data[i]);
                       },
                       itemCount: snapshot.data.length,
-
                     ),
                   );
                 }

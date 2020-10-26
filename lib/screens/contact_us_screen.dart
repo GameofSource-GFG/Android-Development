@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:our_gfg/components/my_text_field.dart';
-import 'package:our_gfg/services/firebase_storage_service.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+
+import '../services/firebase_storage_service.dart';
+import '../components/my_text_field.dart';
 
 // ignore: must_be_immutable
 class ContactUs extends StatelessWidget {
@@ -25,7 +26,7 @@ class ContactUs extends StatelessWidget {
                 onPressed: () {
                   if (_formKey.currentState.validate()) {
                     FirebaseStorageService.contactFormHandler(
-                        _name, _email, _phone, _message)
+                            _name, _email, _phone, _message)
                         .then((value) {
                       _formKey.currentState.reset();
                       Fluttertoast.showToast(

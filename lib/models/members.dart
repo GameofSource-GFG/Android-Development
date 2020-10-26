@@ -1,4 +1,4 @@
-class MEMBER {
+class Member {
   String speakerName;
   String speakerDesc;
   String speakerImage;
@@ -11,7 +11,7 @@ class MEMBER {
   String speakerSession;
   String instagramUrl;
 
-  MEMBER({
+  Member({
     this.speakerName,
     this.speakerDesc,
     this.speakerImage,
@@ -24,6 +24,4 @@ class MEMBER {
     this.speakerSession,
     this.instagramUrl,
   });
-
-
 }
