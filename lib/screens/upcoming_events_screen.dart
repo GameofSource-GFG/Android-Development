@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:our_gfg/components/upcoming_event_card.dart';
-import 'package:our_gfg/models/event.dart';
-import 'package:our_gfg/services/firebase_storage_service.dart';
+
+import '../components/upcoming_event_card.dart';
+import '../models/event.dart';
+import '../services/firebase_storage_service.dart';
 
 class UpcomingEventsScreen extends StatefulWidget {
   static final String routeName = "/upcoming_events";
@@ -30,7 +31,11 @@ class _UpcomingEventsScreenState extends State<UpcomingEventsScreen> {
           future: this._upcomingEvents,
           builder: (context, snapshot) {
             if (snapshot.hasError) {
-              return Center(child: Icon(Icons.error,color: Color(0xFF2F8D46),));
+              return Center(
+                  child: Icon(
+                Icons.error,
+                color: Color(0xFF2F8D46),
+              ));
             } else if (snapshot.hasData) {
               return ListView.builder(
                 physics: BouncingScrollPhysics(),
