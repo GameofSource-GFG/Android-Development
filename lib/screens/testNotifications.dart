@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:our_gfg/services/one_signal_event_notifier.dart';
+import 'package:our_gfg/services/one_signal_service.dart';
 
 class TestNotifications extends StatelessWidget {
   final String name = "Test event";
@@ -27,7 +27,7 @@ class TestNotifications extends StatelessWidget {
                       .add(Duration(hours: 4));
                   OneSignalService.scheduleNotification(name, date, 4);
                 },
-                child: Text("Get notification!"),
+                child: Text("Register!"),
               ),
             ],
           ),

@@ -2,7 +2,7 @@ import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 class OneSignalService {
   static initializeOneSignal() {
-    OneSignal.shared.init("7e36b485-1ee9-41c1-a6d9-d00e4b14b63f", iOSSettings: {
+    OneSignal.shared.init("1d4d027b-73b3-4af0-8381-87a4a6d06a27", iOSSettings: {
       OSiOSSettings.autoPrompt: false,
       OSiOSSettings.inAppLaunchUrl: false
     });
@@ -12,6 +12,7 @@ class OneSignalService {
 
   // call this function to schedule notification when an user registers for an event
   // parameters required: event name<String>, event date<DateTime>, hoursBefore<int>
+  // will have to modify the function to accept event map once event registration is working
 
   static scheduleNotification(
       String eventName, DateTime eventDate, int hoursBefore) async {
