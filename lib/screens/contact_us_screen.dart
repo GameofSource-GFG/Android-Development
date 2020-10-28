@@ -3,6 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 import '../services/firebase_storage_service.dart';
 import '../components/my_text_field.dart';
+import '../widgets/CustomAppDrawer.dart';
 
 // ignore: must_be_immutable
 class ContactUs extends StatelessWidget {
@@ -16,6 +17,7 @@ class ContactUs extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        drawer: CustomAppDrawer(),
         appBar: AppBar(
           title: Text("Contact Us"),
           backgroundColor: Color(0xFF2F8D46),
