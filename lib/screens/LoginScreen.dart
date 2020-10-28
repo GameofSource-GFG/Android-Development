@@ -6,7 +6,6 @@ import 'package:our_gfg/screens/homepage.dart';
 
 import '../services/firebase_auth_service.dart';
 import 'sign_up.dart';
-import 'upcoming_events_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   static final String routeName = "/login";

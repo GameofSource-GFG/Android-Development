@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:our_gfg/screens/homepage.dart';
 
-import '../screens/upcoming_events_screen.dart';
 
 String emailIdErrorMessage = "";
 String passwordErrorMessage = "";
