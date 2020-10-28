@@ -9,10 +9,14 @@ import 'package:our_gfg/screens/mission.dart';
 import 'package:our_gfg/screens/sign_up.dart';
 import 'package:our_gfg/screens/social_media.dart';
 import 'package:our_gfg/screens/upcoming_events_screen.dart';
+import 'package:our_gfg/services/one_signal_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
+  // to register the device with OneSignal
+  OneSignalService.initializeOneSignal();
   runApp(MyApp());
 }
 
