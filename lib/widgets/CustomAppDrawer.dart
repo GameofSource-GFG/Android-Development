@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:our_gfg/screens/EventRegistration.dart';
 import 'package:our_gfg/screens/contact_us_screen.dart';
 import 'package:our_gfg/screens/homepage.dart';
 
+import '../screens/LoginScreen.dart';
 import '../screens/about_screen.dart';
 import '../screens/members.dart';
 import '../screens/upcoming_events_screen.dart';
+import '../services/firebase_auth_service.dart';
 
 class CustomAppDrawer extends StatefulWidget {
   @override
@@ -123,6 +126,29 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
               ),
               leading: Icon(
                 Icons.info,
+                color: Color.fromRGBO(47, 141, 70, 1),
+              ),
+            ),
+          ),
+          Divider(
+            color: Color.fromRGBO(47, 141, 70, 1),
+          ),
+          InkWell(
+            onTap: () async {
+              await FirebaseAuthService.logoutUser();
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                LoginScreen.routeName,
+                (route) => false,
+              );
+              Fluttertoast.showToast(msg: "Logged out successfully");
+            },
+            child: ListTile(
+              title: Text(
+                "Logout",
+              ),
+              leading: Icon(
+                Icons.logout,
                 color: Color.fromRGBO(47, 141, 70, 1),
               ),
             ),
