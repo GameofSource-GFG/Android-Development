@@ -40,20 +40,14 @@ class AnnouncementCard extends StatelessWidget {
             ),
           ),
           SizedBox(height: 10),
-          RichText(
-            text: TextSpan(
-              style: TextStyle(color: Colors.black,fontSize: 16),
-              children: [
-                TextSpan(
-                  text: "Date : ",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF2F8D46),
-                  ),
-                ),
-                TextSpan(text: announcement.date),
-              ],
-            ),
+          Row(
+            children: [
+              Icon(
+                  Icons.access_time,
+                color: Colors.green,
+              ),
+              Text(" "+announcement.relativeTime)
+            ],
           ),
         ],
       ),

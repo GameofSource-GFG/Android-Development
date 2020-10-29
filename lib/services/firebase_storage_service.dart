@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:our_gfg/models/event.dart';
+import 'package:our_gfg/models/announcement.dart';
 
 class FirebaseStorageService {
   FirebaseStorageService._();
@@ -15,6 +16,14 @@ class FirebaseStorageService {
     for (QueryDocumentSnapshot docSnapshot in snapshot.docs)
       _events.add(Event.fromDocumentSnapshot(docSnapshot));
     return _events;
+  }
+
+  static Future<List<Announcement>> getAnnouncements() async {
+    List<Announcement> _announcements = [];
+    QuerySnapshot snapshot = await _firestore.collection("announcements").get();
+    for (QueryDocumentSnapshot docSnapshot in snapshot.docs)
+      _announcements.add(Announcement.fromDocumentSnapshot(docSnapshot));
+    return _announcements;
   }
 
   static Future contactFormHandler(
