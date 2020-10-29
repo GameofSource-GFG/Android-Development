@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 
 import '../widgets/CustomAppDrawer.dart';
+
 class MissionAndVision extends StatefulWidget {
   static final String routeName = "/mission";
 
@@ -22,7 +23,6 @@ class _MissionAndVisionState extends State<MissionAndVision> {
       ),
       body: SingleChildScrollView(
         child: Container(
-
           child: Column(
             children: <Widget>[
               SizedBox(
