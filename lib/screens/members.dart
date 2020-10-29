@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../models/individual_member.dart';
 import '../models/members.dart';
+import '../widgets/CustomAppDrawer.dart';
 
 class Members extends StatefulWidget {
   static final String routeName = "/members";
@@ -31,6 +32,7 @@ class _MembersState extends State<Members> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: CustomAppDrawer(),
       appBar: AppBar(
         title: Text(
           'Members',

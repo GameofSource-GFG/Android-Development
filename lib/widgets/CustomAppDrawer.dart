@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:our_gfg/screens/EventRegistration.dart';
 import 'package:our_gfg/screens/contact_us_screen.dart';
+import 'package:our_gfg/screens/homepage.dart';
 
 import '../screens/about_screen.dart';
 import '../screens/members.dart';
@@ -27,7 +28,9 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
             child: null,
           ),
           InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, HomePage.routeName);
+            },
             child: ListTile(
               title: Text(
                 "Home",

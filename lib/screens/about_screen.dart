@@ -2,6 +2,8 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../widgets/CustomAppDrawer.dart';
+
 class About extends StatelessWidget {
   static final String routeName = "/about";
 
@@ -18,6 +20,10 @@ class About extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: Text("About Us"),
+      ),
+      drawer: CustomAppDrawer(),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(children: [

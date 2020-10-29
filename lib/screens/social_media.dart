@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../widgets/CustomAppDrawer.dart';
+
 class SocialMediaLinks extends StatefulWidget {
   static final String routeName = "/socialmedia";
 
@@ -22,6 +24,7 @@ class _SocialMediaLinksState extends State<SocialMediaLinks> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: CustomAppDrawer(),
       appBar: AppBar(
         title: Text('GFG Social media'),
         centerTitle: true,
