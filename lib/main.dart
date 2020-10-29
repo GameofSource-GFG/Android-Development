@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
         ContactUs.routeName: (context) => ContactUs(),
         EventRegistration.routeName: (context) => EventRegistration()
       },
-      home: EventRegistration(),
+      home: LoginScreen(),
     );
   }
 }
