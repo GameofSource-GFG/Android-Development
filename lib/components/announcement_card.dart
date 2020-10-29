@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:our_gfg/models/announcement.dart';
+
+import '../models/announcement.dart';
 
 class AnnouncementCard extends StatelessWidget {
   final Announcement announcement;
@@ -42,7 +43,7 @@ class AnnouncementCard extends StatelessWidget {
           SizedBox(height: 10),
           RichText(
             text: TextSpan(
-              style: TextStyle(color: Colors.black,fontSize: 16),
+              style: TextStyle(color: Colors.black, fontSize: 16),
               children: [
                 TextSpan(
                   text: "Date : ",

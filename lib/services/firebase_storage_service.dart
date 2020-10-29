@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:our_gfg/models/event.dart';
+import '../models/event.dart';
 
 class FirebaseStorageService {
   FirebaseStorageService._();

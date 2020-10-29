@@ -67,9 +67,9 @@ class About extends StatelessWidget {
                     speed: Duration(milliseconds: 100),
                     repeatForever: true,
                     textStyle: TextStyle(
-                        color: Color(0xFF2F8D46),
-                        fontSize: 30,
-                        )),
+                      color: Color(0xFF2F8D46),
+                      fontSize: 30,
+                    )),
                 Icon(
                   Icons.info,
                   color: Color(0xFF2F8D46),

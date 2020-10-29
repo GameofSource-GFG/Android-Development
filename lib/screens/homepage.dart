@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:our_gfg/components/announcement_card.dart';
-import 'package:our_gfg/models/announcement.dart';
 
+import '../components/announcement_card.dart';
+import '../models/announcement.dart';
 import '../widgets/CustomAppDrawer.dart';
 
 class HomePage extends StatelessWidget {
