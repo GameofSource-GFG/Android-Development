@@ -9,6 +9,7 @@ import 'package:our_gfg/screens/mission.dart';
 import 'package:our_gfg/screens/sign_up.dart';
 import 'package:our_gfg/screens/social_media.dart';
 import 'package:our_gfg/screens/upcoming_events_screen.dart';
+import 'screens/EventRegistration.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
         SocialMediaLinks.routeName: (context) => SocialMediaLinks(),
         UpcomingEventsScreen.routeName: (context) => UpcomingEventsScreen(),
         ContactUs.routeName: (context) => ContactUs(),
+        EventRegistration.routeName: (context) => EventRegistration(),
         HomePage.routeName: (context) => HomePage(),
       },
       home: LoginScreen(),
