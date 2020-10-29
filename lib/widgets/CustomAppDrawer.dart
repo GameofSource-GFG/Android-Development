@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:our_gfg/screens/EventRegistration.dart';
 import 'package:our_gfg/screens/contact_us_screen.dart';
 
 import '../screens/about_screen.dart';
@@ -51,6 +52,23 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
               ),
               leading: Icon(
                 Icons.event,
+                color: Color.fromRGBO(47, 141, 70, 1),
+              ),
+            ),
+          ),
+          Divider(
+            color: Color.fromRGBO(47, 141, 70, 1),
+          ),
+          InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, EventRegistration.routeName);
+            },
+            child: ListTile(
+              title: Text(
+                "Register",
+              ),
+              leading: Icon(
+                Icons.app_registration,
                 color: Color.fromRGBO(47, 141, 70, 1),
               ),
             ),
