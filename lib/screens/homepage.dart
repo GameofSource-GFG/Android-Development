@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../services/firebase_storage_service.dart';
 import '../components/announcement_card.dart';
 import '../models/announcement.dart';
 import '../widgets/CustomAppDrawer.dart';
@@ -31,16 +32,15 @@ class _HomePageState extends State<HomePage> {
         drawer: CustomAppDrawer(),
         body: FutureBuilder<List<Announcement>>(
           future: this._announcements,
-          builder: (context, snapshot){
-            if(snapshot.hasError){
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
               return Center(
                 child: Icon(
-                Icons.error,
+                  Icons.error,
                   color: Color(0xFF2F8D46),
                 ),
               );
-            }
-            else if(snapshot.hasData){
+            } else if (snapshot.hasData) {
               return ListView.builder(
                 physics: BouncingScrollPhysics(),
                 itemBuilder: (context, index) {
@@ -48,8 +48,7 @@ class _HomePageState extends State<HomePage> {
                 },
                 itemCount: snapshot.data.length,
               );
-            }
-            else{
+            } else {
               return Center(
                 child: CircularProgressIndicator(),
               );
