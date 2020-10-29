@@ -13,4 +13,8 @@ class FirebaseAuthService {
       password: password,
     );
   }
+
+  static Future<void> logoutUser() async {
+    return await _auth.signOut();
+  }
 }

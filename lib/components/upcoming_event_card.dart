@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../screens/EventRegistration.dart';
 import 'my_cached_network_image.dart';
 import '../models/event.dart';
 
@@ -84,6 +85,12 @@ class UpcomingEventCard extends StatelessWidget {
               ],
             ),
           ),
+          RaisedButton(
+            child: Text('Register Now'),
+            onPressed: () {
+              Navigator.pushNamed(context, EventRegistration.routeName);
+            },
+          )
         ],
       ),
     );
