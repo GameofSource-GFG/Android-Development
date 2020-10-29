@@ -2,8 +2,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:our_gfg/screens/homepage.dart';
 
+import 'homepage.dart';
 import '../services/firebase_auth_service.dart';
 import 'sign_up.dart';
 

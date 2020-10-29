@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:our_gfg/widgets/CustomAppDrawer.dart';
+
+import '../widgets/CustomAppDrawer.dart';
 
 class EventRegistration extends StatefulWidget {
   static final String routeName = "/event_registration";

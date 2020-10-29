@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:our_gfg/screens/homepage.dart';
 
-
 String emailIdErrorMessage = "";
 String passwordErrorMessage = "";
 
@@ -56,10 +55,7 @@ class _SignUpState extends State<SignUp> {
         .createUserWithEmailAndPassword(
             email: email.text, password: password.text)
         .then((result) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => HomePage()),
-      );
+      Navigator.pushNamed(context, HomePage.routeName);
     }).catchError(
       (err) {
         showDialog(
@@ -215,7 +211,7 @@ class _SignUpState extends State<SignUp> {
                       padding: EdgeInsets.only(left: 40, right: 40),
                       shape: StadiumBorder(),
                       color: Color(0xFF2F8D46),
-                      onPressed: () async{
+                      onPressed: () async {
                         await _login();
                         Navigator.pushNamed(context, HomePage.routeName);
                       },

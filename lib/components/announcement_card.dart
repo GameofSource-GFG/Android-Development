@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:our_gfg/models/announcement.dart';
+
+import '../models/announcement.dart';
 
 class AnnouncementCard extends StatelessWidget {
   final Announcement announcement;
@@ -48,6 +49,7 @@ class AnnouncementCard extends StatelessWidget {
               ),
               Text(" "+announcement.relativeTime)
             ],
+
           ),
         ],
       ),
