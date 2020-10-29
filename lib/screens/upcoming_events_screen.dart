@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../components/upcoming_event_card.dart';
 import '../models/event.dart';
 import '../services/firebase_storage_service.dart';
+import '../widgets/CustomAppDrawer.dart';
 
 class UpcomingEventsScreen extends StatefulWidget {
   static final String routeName = "/upcoming_events";
@@ -24,6 +25,7 @@ class _UpcomingEventsScreenState extends State<UpcomingEventsScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        drawer: CustomAppDrawer(),
         appBar: AppBar(
           title: Text("Upcoming Events"),
         ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:our_gfg/screens/LoginScreen.dart';
 import 'package:our_gfg/screens/about_screen.dart';
 import 'package:our_gfg/screens/contact_us_screen.dart';
+import 'package:our_gfg/screens/homepage.dart';
 import 'package:our_gfg/screens/members.dart';
 import 'package:our_gfg/screens/mission.dart';
 import 'package:our_gfg/screens/sign_up.dart';
@@ -18,6 +19,7 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   final kMainColor = Color(0xFF2F8D46);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -38,6 +40,7 @@ class MyApp extends StatelessWidget {
         UpcomingEventsScreen.routeName: (context) => UpcomingEventsScreen(),
         ContactUs.routeName: (context) => ContactUs(),
         EventRegistration.routeName: (context) => EventRegistration()
+        HomePage.routeName: (context) => HomePage(),
       },
       home: LoginScreen(),
     );
