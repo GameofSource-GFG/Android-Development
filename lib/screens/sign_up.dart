@@ -2,24 +2,25 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:our_gfg/screens/upcoming_events_screen.dart';
+import 'package:our_gfg/screens/homepage.dart';
+
 
 String emailIdErrorMessage = "";
 String passwordErrorMessage = "";
 
 class SignUp extends StatefulWidget {
-     static final String routeName = "/sign_up";
+  static final String routeName = "/sign_up";
   @override
   _SignUpState createState() => _SignUpState();
 }
 
 class _SignUpState extends State<SignUp> {
-  final _formKey = GlobalKey<FormState>();
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   //DatabaseReference dbRef = FirebaseDatabase.instance.reference().child("Users");
   TextEditingController nameController = TextEditingController();
 
   //google sign-in
+  // ignore: unused_field
   bool _isLoggedIn = false;
 
   GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
@@ -35,6 +36,7 @@ class _SignUpState extends State<SignUp> {
     }
   }
 
+  // ignore: unused_element
   _logout() {
     _googleSignIn.signOut();
     setState(
@@ -53,12 +55,12 @@ class _SignUpState extends State<SignUp> {
     firebaseAuth
         .createUserWithEmailAndPassword(
             email: email.text, password: password.text)
-        .then((result) {Navigator.push(
+        .then((result) {
+      Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => UpcomingEventsScreen()),
+        MaterialPageRoute(builder: (context) => HomePage()),
       );
-     })
-        .catchError(
+    }).catchError(
       (err) {
         showDialog(
           context: context,
@@ -201,7 +203,6 @@ class _SignUpState extends State<SignUp> {
                             validityEmail = isValidEmail(email.text);
                             validityPassword = isValidPassword(password.text);
                             registerToFb();
-                            
                           },
                         );
                       },
@@ -213,11 +214,11 @@ class _SignUpState extends State<SignUp> {
                     RaisedButton(
                       padding: EdgeInsets.only(left: 40, right: 40),
                       shape: StadiumBorder(),
-
                       color: Color(0xFF2F8D46),
-                      onPressed: () {
-                       _login();},
-
+                      onPressed: () async{
+                        await _login();
+                        Navigator.pushNamed(context, HomePage.routeName);
+                      },
                       child: Text('Sign In With Google'),
                     ),
                   ],

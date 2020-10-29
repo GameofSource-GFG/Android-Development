@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+
+import '../widgets/CustomAppDrawer.dart';
 class MissionAndVision extends StatefulWidget {
   static final String routeName = "/mission";
 
@@ -11,6 +13,7 @@ class _MissionAndVisionState extends State<MissionAndVision> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: CustomAppDrawer(),
       appBar: AppBar(
         title: Text(
           "Mission & Vision",

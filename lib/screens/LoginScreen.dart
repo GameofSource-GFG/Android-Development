@@ -2,10 +2,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:our_gfg/services/firebase_auth_service.dart';
+import 'package:our_gfg/screens/homepage.dart';
 
+import '../services/firebase_auth_service.dart';
 import 'sign_up.dart';
-import 'upcoming_events_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   static final String routeName = "/login";
@@ -81,8 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     filled: true,
                     fillColor: Color(0xFF2F8D46).withOpacity(0.2),
                     hintText: 'Email',
-                    hintStyle: TextStyle(
-                        color: Colors.black.withOpacity(0.6)),
+                    hintStyle: TextStyle(color: Colors.black.withOpacity(0.6)),
                     prefixIcon: Icon(Icons.person, color: Color(0xFF2F8D46)),
                     enabledBorder: OutlineInputBorder(
                       borderSide:
@@ -121,8 +120,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     filled: true,
                     fillColor: Color(0xFF2F8D46).withOpacity(0.2),
                     hintText: 'Password',
-                    hintStyle: TextStyle(
-                      color: Colors.black.withOpacity(0.6)),
+                    hintStyle: TextStyle(color: Colors.black.withOpacity(0.6)),
                     errorText: validityPassword ? null : passwordErrorMessage,
                     //here string stored in emailIdErrorMessage is displayed if boolean variable validityEmail is false
 
@@ -152,54 +150,52 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
             Padding(
-              //LOGIN BUTTON
-              //after pressing this button the emailId and Password entered by user
-              //are validated by validating functions bool isValidEmail(String) and bool isValidPassword(String)
-              //the value returned by function is stored in the boolean variables validityEmail and validityPassword
-              // if the data is entered is valid functions return true.
-              //if data entered is invalid:
-              // 1.functions assign appropriate error messages to String variable passwordErrorMessage and String variable emailIdErrorMessage
-              // 2. and then return false.
+                //LOGIN BUTTON
+                //after pressing this button the emailId and Password entered by user
+                //are validated by validating functions bool isValidEmail(String) and bool isValidPassword(String)
+                //the value returned by function is stored in the boolean variables validityEmail and validityPassword
+                // if the data is entered is valid functions return true.
+                //if data entered is invalid:
+                // 1.functions assign appropriate error messages to String variable passwordErrorMessage and String variable emailIdErrorMessage
+                // 2. and then return false.
 
-              padding: const EdgeInsets.all(16.0),
-              child: MaterialButton(
-                  height: MediaQuery.of(context).size.height * 0.08,
-                  minWidth: MediaQuery.of(context).size.width,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(20)),
-                  onPressed: () async{
-                    setState(() {
-                      //storing value returned by validating functions into boolean variables
-                      validityEmail = isValidEmail(email.text);
-                      validityPassword = isValidPassword(password.text);
-                    });
-                    if (validityEmail && validityPassword) {
-                     try {
-                       await FirebaseAuthService.loginUser(
-                         email: email.text?.trim(),
-                         password: password.text,
-                       );
+                padding: const EdgeInsets.all(16.0),
+                child: MaterialButton(
+                    height: MediaQuery.of(context).size.height * 0.08,
+                    minWidth: MediaQuery.of(context).size.width,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(20)),
+                    onPressed: () async {
+                      setState(() {
+                        //storing value returned by validating functions into boolean variables
+                        validityEmail = isValidEmail(email.text);
+                        validityPassword = isValidPassword(password.text);
+                      });
+                      if (validityEmail && validityPassword) {
+                        try {
+                          await FirebaseAuthService.loginUser(
+                            email: email.text?.trim(),
+                            password: password.text,
+                          );
 
-                       Navigator.pushReplacementNamed(
-                         context,
-                         UpcomingEventsScreen.routeName,
-                       );
-                     }on FirebaseAuthException catch(e) {
-                       Fluttertoast.showToast(msg: e.message);
-                     } catch(e) {
-                       Fluttertoast.showToast(msg: "An error occurred. Please try again later");
-                     }
-                    }
-                  },
-                  child: Text(
-                    "LOGIN",
-                    style: TextStyle(
-                        fontSize: 17.0,
-                        color: Colors.white),
-                  ),
-                //Color(0xFF0DD6BB)
-                color: new Color(0xFF2F8D46))
-            ),
+                          Navigator.pushReplacementNamed(
+                            context,
+                            HomePage.routeName,
+                          );
+                        } on FirebaseAuthException catch (e) {
+                          Fluttertoast.showToast(msg: e.message);
+                        } catch (e) {
+                          Fluttertoast.showToast(
+                              msg: "An error occurred. Please try again later");
+                        }
+                      }
+                    },
+                    child: Text(
+                      "LOGIN",
+                      style: TextStyle(fontSize: 17.0, color: Colors.white),
+                    ),
+                    //Color(0xFF0DD6BB)
+                    color: new Color(0xFF2F8D46))),
             SizedBox(height: 10.0),
             Row(
               //REGISTER NOW LINK
@@ -224,7 +220,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 )
               ],
             ),
-
           ],
         ),
       ),
@@ -272,4 +267,3 @@ bool isValidPassword(String password) {
   } else
     return true;
 }
-

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:our_gfg/services/firebase_storage_service.dart';
+
+import '../services/firebase_storage_service.dart';
 
 class Newsletter extends StatefulWidget {
   @override
@@ -86,16 +87,19 @@ class _NewsletterState extends State<Newsletter> {
                           child: Center(
                             child: RaisedButton(
                               color: Color.fromRGBO(47, 141, 70, 1),
-                              onPressed: () async{
+                              onPressed: () async {
                                 if (_formKey.currentState.validate()) {
                                   try {
-                                    await FirebaseStorageService.subscribeToNewsletter(
-                                        _emailController.text?.trim()
-                                    );
+                                    await FirebaseStorageService
+                                        .subscribeToNewsletter(
+                                            _emailController.text?.trim());
                                     _emailController.clear();
-                                    Fluttertoast.showToast(msg: "Subscribed successfully");
-                                  }catch(e) {
-                                    Fluttertoast.showToast(msg: "An error occurred. Please try again later");
+                                    Fluttertoast.showToast(
+                                        msg: "Subscribed successfully");
+                                  } catch (e) {
+                                    Fluttertoast.showToast(
+                                        msg:
+                                            "An error occurred. Please try again later");
                                   }
                                 }
                               },

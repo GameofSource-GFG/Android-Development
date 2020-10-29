@@ -23,6 +23,7 @@ dependencies:
   google_sign_in: ^4.5.5
   firebase_database: ^4.1.1
   fluttertoast: ^7.1.1
+  onesignal_flutter: ^2.6.1
 
 dev_dependencies:
   google_fonts: ^1.1.1
@@ -37,9 +38,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - images/
     - assets/images/
-
 
 flutter_native_splash:
   image : 'assets/images/gfg.png'    
