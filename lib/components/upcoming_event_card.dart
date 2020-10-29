@@ -86,13 +86,11 @@ class UpcomingEventCard extends StatelessWidget {
             ),
           ),
           RaisedButton(
-              child: Text('Register Now'),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => EventRegistration()),
-                );
-              })
+            child: Text('Register Now'),
+            onPressed: () {
+              Navigator.pushNamed(context, EventRegistration.routeName);
+            },
+          )
         ],
       ),
     );
