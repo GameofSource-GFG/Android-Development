@@ -8,7 +8,10 @@ class FirebaseStorageService {
 
   static Future<List<Event>> getUpcomingEvents() async {
     List<Event> _events = [];
-    QuerySnapshot snapshot = await _firestore.collection("event-data").get();
+    QuerySnapshot snapshot = await _firestore
+        .collection("event-data")
+        .where("finished", isEqualTo: false)
+        .get();
     for (QueryDocumentSnapshot docSnapshot in snapshot.docs)
       _events.add(Event.fromDocumentSnapshot(docSnapshot));
     return _events;
@@ -23,7 +26,7 @@ class FirebaseStorageService {
       "message": message
     });
   }
-  
+
   static Future<void> subscribeToNewsletter(String email) async {
     return await _firestore.collection("newsletter").doc("users").set({
       'emails': FieldValue.arrayUnion([email])
