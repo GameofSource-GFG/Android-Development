@@ -41,6 +41,4 @@ flutter:
   assets:
     - assets/images/
 
-flutter_native_splash:
-  image : 'assets/images/gfg.png'    
-  color: “#FFFFFF”
+
