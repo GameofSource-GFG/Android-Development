@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 
 class FirebaseAuthService {
   FirebaseAuthService._();
@@ -12,5 +12,9 @@ class FirebaseAuthService {
       email: email,
       password: password,
     );
+  }
+
+  static Future<void> logoutUser() async {
+    return await _auth.signOut();
   }
 }

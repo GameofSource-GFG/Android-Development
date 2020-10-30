@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:our_gfg/screens/homepage.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
 
+import 'homepage.dart';
 import '../services/firebase_auth_service.dart';
 import 'sign_up.dart';
 
@@ -70,154 +72,189 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
   }
 
+  bool _isLoading = false;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              //the GRAPHIC DESIGN included in the page
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                margin: EdgeInsets.only(top: 50.0),
-                height: MediaQuery.of(context).size.height * 0.32,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        //graphic design used for the screen
-                        image: AssetImage('assets/images/login-design.png'),
-                        fit: BoxFit.fitHeight)),
+    return ModalProgressHUD(
+      inAsyncCall: _isLoading,
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                //the GRAPHIC DESIGN included in the page
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  margin: EdgeInsets.only(top: 50.0),
+                  height: MediaQuery.of(context).size.height * 0.32,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          //graphic design used for the screen
+                          image: AssetImage('assets/images/login-design.png'),
+                          fit: BoxFit.fitHeight)),
+                ),
               ),
-            ),
-            //blank space
-            SizedBox(height: 10.0),
-            Padding(
-              //textField to enter EMAIL ADDRESS
-              padding: const EdgeInsets.all(16.0),
-              child: TextField(
-                controller: email,
-                keyboardType: TextInputType.emailAddress,
-                textInputAction: TextInputAction.next,
-                onSubmitted: (v) {
-                  FocusScope.of(context).requestFocus();
-                },
-                decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Color(0xFF2F8D46).withOpacity(0.2),
-                    hintText: 'Email',
-                    hintStyle: TextStyle(color: Colors.black.withOpacity(0.6)),
-                    prefixIcon: Icon(Icons.person, color: Color(0xFF2F8D46)),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color(0xFF2F8D46).withOpacity(0.2)),
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color(0xFF2F8D46).withOpacity(0.2)),
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    errorText: validityEmail ? null : emailIdErrorMessage,
-                    //here string stored in emailIdErrorMessage is displayed if boolean variable validityEmail is false
-
-                    errorBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.deepOrange,
-                      ),
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    focusedErrorBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.deepOrange,
-                      ),
-                      borderRadius: BorderRadius.circular(20.0),
-                    )),
-              ),
-            ),
-            Padding(
-              //TextField to enter PASSWORD
-              padding: const EdgeInsets.all(16.0),
-              child: TextField(
-                controller: password,
-                textInputAction: TextInputAction.done,
-                decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Color(0xFF2F8D46).withOpacity(0.2),
-                    hintText: 'Password',
-                    hintStyle: TextStyle(color: Colors.black.withOpacity(0.6)),
-                    errorText: validityPassword ? null : passwordErrorMessage,
-                    //here string stored in emailIdErrorMessage is displayed if boolean variable validityEmail is false
-
-                    errorBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Colors.deepOrange, width: 1.0),
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    focusedErrorBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.deepOrange,
-                      ),
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    prefixIcon: Icon(Icons.lock, color: Color(0xFF2F8D46)),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color(0xFF2F8D46).withOpacity(0.2)),
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color(0xFF2F8D46).withOpacity(0.2)),
-                      borderRadius: BorderRadius.circular(20.0),
-                    )),
-                obscureText: true,
-              ),
-            ),
-            Padding(
-                //LOGIN BUTTON
-                //after pressing this button the emailId and Password entered by user
-                //are validated by validating functions bool isValidEmail(String) and bool isValidPassword(String)
-                //the value returned by function is stored in the boolean variables validityEmail and validityPassword
-                // if the data is entered is valid functions return true.
-                //if data entered is invalid:
-                // 1.functions assign appropriate error messages to String variable passwordErrorMessage and String variable emailIdErrorMessage
-                // 2. and then return false.
-
+              //blank space
+              SizedBox(height: 10.0),
+              Padding(
+                //textField to enter EMAIL ADDRESS
                 padding: const EdgeInsets.all(16.0),
-                child: MaterialButton(
-                    height: MediaQuery.of(context).size.height * 0.08,
-                    minWidth: MediaQuery.of(context).size.width,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(20)),
-                    onPressed: () async {
-                      setState(() {
-                        //storing value returned by validating functions into boolean variables
-                        validityEmail = isValidEmail(email.text);
-                        validityPassword = isValidPassword(password.text);
-                      });
-                      if (validityEmail && validityPassword) {
-                        try {
-                          await FirebaseAuthService.loginUser(
-                            email: email.text?.trim(),
-                            password: password.text,
-                          );
+                child: TextField(
+                  controller: email,
+                  keyboardType: TextInputType.emailAddress,
+                  textInputAction: TextInputAction.next,
+                  onSubmitted: (v) {
+                    FocusScope.of(context).requestFocus();
+                  },
+                  decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Color(0xFF2F8D46).withOpacity(0.2),
+                      hintText: 'Email',
+                      hintStyle: TextStyle(color: Colors.black.withOpacity(0.6)),
+                      prefixIcon: Icon(Icons.person, color: Color(0xFF2F8D46)),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide:
+                            BorderSide(color: Color(0xFF2F8D46).withOpacity(0.2)),
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide:
+                            BorderSide(color: Color(0xFF2F8D46).withOpacity(0.2)),
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      errorText: validityEmail ? null : emailIdErrorMessage,
+                      //here string stored in emailIdErrorMessage is displayed if boolean variable validityEmail is false
 
-                          Navigator.pushReplacementNamed(
-                            context,
-                            HomePage.routeName,
-                          );
-                        } on FirebaseAuthException catch (e) {
-                          Fluttertoast.showToast(msg: e.message);
-                        } catch (e) {
-                          Fluttertoast.showToast(
-                              msg: "An error occurred. Please try again later");
+                      errorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.deepOrange,
+                        ),
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.deepOrange,
+                        ),
+                        borderRadius: BorderRadius.circular(20.0),
+                      )),
+                ),
+              ),
+              Padding(
+                //TextField to enter PASSWORD
+                padding: const EdgeInsets.all(16.0),
+                child: TextField(
+                  controller: password,
+                  textInputAction: TextInputAction.done,
+                  decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Color(0xFF2F8D46).withOpacity(0.2),
+                      hintText: 'Password',
+                      hintStyle: TextStyle(color: Colors.black.withOpacity(0.6)),
+                      errorText: validityPassword ? null : passwordErrorMessage,
+                      //here string stored in emailIdErrorMessage is displayed if boolean variable validityEmail is false
+
+                      errorBorder: OutlineInputBorder(
+                        borderSide:
+                            BorderSide(color: Colors.deepOrange, width: 1.0),
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.deepOrange,
+                        ),
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      prefixIcon: Icon(Icons.lock, color: Color(0xFF2F8D46)),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide:
+                            BorderSide(color: Color(0xFF2F8D46).withOpacity(0.2)),
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide:
+                            BorderSide(color: Color(0xFF2F8D46).withOpacity(0.2)),
+                        borderRadius: BorderRadius.circular(20.0),
+                      )),
+                  obscureText: true,
+                ),
+              ),
+              Padding(
+                  //LOGIN BUTTON
+                  //after pressing this button the emailId and Password entered by user
+                  //are validated by validating functions bool isValidEmail(String) and bool isValidPassword(String)
+                  //the value returned by function is stored in the boolean variables validityEmail and validityPassword
+                  // if the data is entered is valid functions return true.
+                  //if data entered is invalid:
+                  // 1.functions assign appropriate error messages to String variable passwordErrorMessage and String variable emailIdErrorMessage
+                  // 2. and then return false.
+
+                  padding: const EdgeInsets.all(16.0),
+                  child: MaterialButton(
+                      height: MediaQuery.of(context).size.height * 0.08,
+                      minWidth: MediaQuery.of(context).size.width,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: new BorderRadius.circular(20)),
+                      onPressed: () async {
+                        setState(() {
+                          //storing value returned by validating functions into boolean variables
+                          validityEmail = isValidEmail(email.text);
+                          validityPassword = isValidPassword(password.text);
+                        });
+                        if (validityEmail && validityPassword) {
+                          try {
+                            setState(() {
+                              _isLoading = true;
+                            });
+                            await FirebaseAuthService.loginUser(
+                              email: email.text?.trim(),
+                              password: password.text,
+                            );
+
+                            Navigator.pushReplacementNamed(
+                              context,
+                              HomePage.routeName,
+                            );
+                          } on FirebaseAuthException catch (e) {
+                            Fluttertoast.showToast(msg: e.message);
+                          } catch (e) {
+                            Fluttertoast.showToast(
+                                msg: "An error occurred. Please try again later");
+                          }
+                          finally {
+                            setState(() {
+                              _isLoading = false;
+                            });
+                          }
                         }
-                      }
+                      },
+                      child: Text(
+                        "LOGIN",
+                        style: TextStyle(fontSize: 17.0, color: Colors.white),
+                      ),
+                      //Color(0xFF0DD6BB)
+                      color: new Color(0xFF2F8D46))),
+              SizedBox(height: 10.0),
+              Row(
+                //REGISTER NOW LINK
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    "Don't have a account yet?",
+                    style: TextStyle(),
+                  ),
+                  SizedBox(width: 5.0),
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, SignUp.routeName);
                     },
                     child: Text(
-                      "LOGIN",
-                      style: TextStyle(fontSize: 17.0, color: Colors.white),
+                      'Register Now',
+                      style: TextStyle(
+                          color: Color(0xFF2F8D46),
+                          fontWeight: FontWeight.bold,
+                          decoration: TextDecoration.underline),
                     ),
                     //Color(0xFF0DD6BB)
                     color: new Color(0xFF2F8D46))),
@@ -256,6 +293,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Text('Sign In With Google'),
             ),
           ],
+
         ),
       ),
     );
