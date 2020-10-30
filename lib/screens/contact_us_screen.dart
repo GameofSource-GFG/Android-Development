@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:our_gfg/components/embedded_map.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 import '../services/firebase_storage_service.dart';
 import '../components/my_text_field.dart';
@@ -93,6 +95,14 @@ class ContactUs extends StatelessWidget {
                 enableMultilineText: true,
                 prefixIconData: Icons.message,
               ),
+              SizedBox(
+                height: 20.0,
+              ),
+              Column(
+                children: [
+                  EmbeddedMap(),
+                ],
+              )
             ],
           ),
         ),
