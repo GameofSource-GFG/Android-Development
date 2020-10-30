@@ -2,6 +2,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:our_gfg/screens/homepage.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 
 import 'homepage.dart';
@@ -37,6 +39,30 @@ class _LoginScreenState extends State<LoginScreen> {
   //They are initialized to true but their values change depending on data entered.On pressing the LogIn button
   //the functions bool isValidEmail(String) and bool isValidPassword(String)
   //are called which validate entered data and return true if data is valid and false if data is invalid.
+  bool _isLoggedIn = false;
+
+  GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
+
+  _login() async {
+    try {
+      await _googleSignIn.signIn();
+      setState(() {
+        _isLoggedIn = true;
+      });
+    } catch (err) {
+      print(err);
+    }
+  }
+
+  // ignore: unused_element
+  _logout() {
+    _googleSignIn.signOut();
+    setState(
+      () {
+        _isLoggedIn = false;
+      },
+    );
+  }
 
   @override
   void dispose() {
@@ -230,11 +256,44 @@ class _LoginScreenState extends State<LoginScreen> {
                           fontWeight: FontWeight.bold,
                           decoration: TextDecoration.underline),
                     ),
-                  )
-                ],
-              ),
-            ],
-          ),
+                    //Color(0xFF0DD6BB)
+                    color: new Color(0xFF2F8D46))),
+            SizedBox(height: 10.0),
+            Row(
+              //REGISTER NOW LINK
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  "Don't have a account yet?",
+                  style: TextStyle(),
+                ),
+                SizedBox(width: 5.0),
+                InkWell(
+                  onTap: () {
+                    Navigator.pushNamed(context, SignUp.routeName);
+                  },
+                  child: Text(
+                    'Register Now',
+                    style: TextStyle(
+                        color: Color(0xFF2F8D46),
+                        fontWeight: FontWeight.bold,
+                        decoration: TextDecoration.underline),
+                  ),
+                )
+              ],
+            ),
+            RaisedButton(
+              padding: EdgeInsets.only(left: 40, right: 40),
+              shape: StadiumBorder(),
+              color: Color(0xFF2F8D46),
+              onPressed: () async {
+                await _login();
+                Navigator.pushNamed(context, HomePage.routeName);
+              },
+              child: Text('Sign In With Google'),
+            ),
+          ],
+
         ),
       ),
     );

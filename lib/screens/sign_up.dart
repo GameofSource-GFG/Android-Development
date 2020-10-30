@@ -21,31 +21,7 @@ class _SignUpState extends State<SignUp> {
 
   //google sign-in
   // ignore: unused_field
-  bool _isLoggedIn = false;
-
-  GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
-
-  _login() async {
-    try {
-      await _googleSignIn.signIn();
-      setState(() {
-        _isLoggedIn = true;
-      });
-    } catch (err) {
-      print(err);
-    }
-  }
-
-  // ignore: unused_element
-  _logout() {
-    _googleSignIn.signOut();
-    setState(
-      () {
-        _isLoggedIn = false;
-      },
-    );
-  }
-
+ 
   final email = TextEditingController();
   final password = TextEditingController();
   bool validityEmail = true;
@@ -193,8 +169,39 @@ class _SignUpState extends State<SignUp> {
                         true, //replaces password with bullets as we enter it
                   ),
                 ),
-                SizedBox(
-                  height: 10,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(10, 30, 10, 10),
+                child: Column(
+                  children: <Widget>[
+                    Text('Continue for a seamless experience!'),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    RaisedButton(
+                      padding: EdgeInsets.only(left: 40, right: 40),
+                      shape: StadiumBorder(),
+                      color: Color(0xFF2F8D46),
+                      onPressed: () {
+                        setState(
+                          () {
+                            validityEmail = isValidEmail(email.text);
+                            validityPassword = isValidPassword(password.text);
+                            registerToFb();
+                          },
+                        );
+                      },
+                      child: Text('SIGN UP'),
+                    ),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    
+                  ],
+
                 ),
                 Padding(
                   padding: EdgeInsets.fromLTRB(10, 30, 10, 10),
