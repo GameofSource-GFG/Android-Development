@@ -2,6 +2,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:our_gfg/screens/homepage.dart';
 
 import '../services/firebase_auth_service.dart';
@@ -36,6 +37,30 @@ class _LoginScreenState extends State<LoginScreen> {
   //They are initialized to true but their values change depending on data entered.On pressing the LogIn button
   //the functions bool isValidEmail(String) and bool isValidPassword(String)
   //are called which validate entered data and return true if data is valid and false if data is invalid.
+  bool _isLoggedIn = false;
+
+  GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
+
+  _login() async {
+    try {
+      await _googleSignIn.signIn();
+      setState(() {
+        _isLoggedIn = true;
+      });
+    } catch (err) {
+      print(err);
+    }
+  }
+
+  // ignore: unused_element
+  _logout() {
+    _googleSignIn.signOut();
+    setState(
+      () {
+        _isLoggedIn = false;
+      },
+    );
+  }
 
   @override
   void dispose() {
@@ -219,6 +244,16 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 )
               ],
+            ),
+            RaisedButton(
+              padding: EdgeInsets.only(left: 40, right: 40),
+              shape: StadiumBorder(),
+              color: Color(0xFF2F8D46),
+              onPressed: () async {
+                await _login();
+                Navigator.pushNamed(context, HomePage.routeName);
+              },
+              child: Text('Sign In With Google'),
             ),
           ],
         ),
