@@ -21,31 +21,7 @@ class _SignUpState extends State<SignUp> {
 
   //google sign-in
   // ignore: unused_field
-  bool _isLoggedIn = false;
-
-  GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
-
-  _login() async {
-    try {
-      await _googleSignIn.signIn();
-      setState(() {
-        _isLoggedIn = true;
-      });
-    } catch (err) {
-      print(err);
-    }
-  }
-
-  // ignore: unused_element
-  _logout() {
-    _googleSignIn.signOut();
-    setState(
-      () {
-        _isLoggedIn = false;
-      },
-    );
-  }
-
+ 
   final email = TextEditingController();
   final password = TextEditingController();
   bool validityEmail = true;
@@ -211,16 +187,7 @@ class _SignUpState extends State<SignUp> {
                     SizedBox(
                       height: 10.0,
                     ),
-                    RaisedButton(
-                      padding: EdgeInsets.only(left: 40, right: 40),
-                      shape: StadiumBorder(),
-                      color: Color(0xFF2F8D46),
-                      onPressed: () async{
-                        await _login();
-                        Navigator.pushNamed(context, HomePage.routeName);
-                      },
-                      child: Text('Sign In With Google'),
-                    ),
+                    
                   ],
                 ),
               ),
