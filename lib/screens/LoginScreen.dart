@@ -112,16 +112,17 @@ class _LoginScreenState extends State<LoginScreen> {
                       filled: true,
                       fillColor: Color(0xFF2F8D46).withOpacity(0.2),
                       hintText: 'Email',
-                      hintStyle: TextStyle(color: Colors.black.withOpacity(0.6)),
+                      hintStyle:
+                          TextStyle(color: Colors.black.withOpacity(0.6)),
                       prefixIcon: Icon(Icons.person, color: Color(0xFF2F8D46)),
                       enabledBorder: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Color(0xFF2F8D46).withOpacity(0.2)),
+                        borderSide: BorderSide(
+                            color: Color(0xFF2F8D46).withOpacity(0.2)),
                         borderRadius: BorderRadius.circular(20.0),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Color(0xFF2F8D46).withOpacity(0.2)),
+                        borderSide: BorderSide(
+                            color: Color(0xFF2F8D46).withOpacity(0.2)),
                         borderRadius: BorderRadius.circular(20.0),
                       ),
                       errorText: validityEmail ? null : emailIdErrorMessage,
@@ -151,7 +152,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       filled: true,
                       fillColor: Color(0xFF2F8D46).withOpacity(0.2),
                       hintText: 'Password',
-                      hintStyle: TextStyle(color: Colors.black.withOpacity(0.6)),
+                      hintStyle:
+                          TextStyle(color: Colors.black.withOpacity(0.6)),
                       errorText: validityPassword ? null : passwordErrorMessage,
                       //here string stored in emailIdErrorMessage is displayed if boolean variable validityEmail is false
 
@@ -168,13 +170,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       prefixIcon: Icon(Icons.lock, color: Color(0xFF2F8D46)),
                       enabledBorder: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Color(0xFF2F8D46).withOpacity(0.2)),
+                        borderSide: BorderSide(
+                            color: Color(0xFF2F8D46).withOpacity(0.2)),
                         borderRadius: BorderRadius.circular(20.0),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Color(0xFF2F8D46).withOpacity(0.2)),
+                        borderSide: BorderSide(
+                            color: Color(0xFF2F8D46).withOpacity(0.2)),
                         borderRadius: BorderRadius.circular(20.0),
                       )),
                   obscureText: true,
@@ -220,9 +222,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             Fluttertoast.showToast(msg: e.message);
                           } catch (e) {
                             Fluttertoast.showToast(
-                                msg: "An error occurred. Please try again later");
-                          }
-                          finally {
+                                msg:
+                                    "An error occurred. Please try again later");
+                          } finally {
                             setState(() {
                               _isLoading = false;
                             });
@@ -236,7 +238,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       //Color(0xFF0DD6BB)
                       color: new Color(0xFF2F8D46))),
               SizedBox(height: 10.0),
-              Row(
+              Column(
                 //REGISTER NOW LINK
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -257,43 +259,25 @@ class _LoginScreenState extends State<LoginScreen> {
                           decoration: TextDecoration.underline),
                     ),
                     //Color(0xFF0DD6BB)
-                    color: new Color(0xFF2F8D46))),
-            SizedBox(height: 10.0),
-            Row(
-              //REGISTER NOW LINK
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  "Don't have a account yet?",
-                  style: TextStyle(),
-                ),
-                SizedBox(width: 5.0),
-                InkWell(
-                  onTap: () {
-                    Navigator.pushNamed(context, SignUp.routeName);
-                  },
-                  child: Text(
-                    'Register Now',
-                    style: TextStyle(
-                        color: Color(0xFF2F8D46),
-                        fontWeight: FontWeight.bold,
-                        decoration: TextDecoration.underline),
                   ),
-                )
-              ],
-            ),
-            RaisedButton(
-              padding: EdgeInsets.only(left: 40, right: 40),
-              shape: StadiumBorder(),
-              color: Color(0xFF2F8D46),
-              onPressed: () async {
-                await _login();
-                Navigator.pushNamed(context, HomePage.routeName);
-              },
-              child: Text('Sign In With Google'),
-            ),
-          ],
-
+                  SizedBox(height: 10.0),
+                  RaisedButton(
+                    padding: EdgeInsets.only(left: 40, right: 40),
+                    shape: StadiumBorder(),
+                    color: Color(0xFF2F8D46),
+                    onPressed: () async {
+                      await _login();
+                      Navigator.pushNamed(context, HomePage.routeName);
+                    },
+                    child: Text(
+                      'Sign In With Google',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
