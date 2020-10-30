@@ -45,9 +45,11 @@ class _LoginScreenState extends State<LoginScreen> {
 
   _login() async {
     try {
-      await _googleSignIn.signIn();
-      setState(() {
-        _isLoggedIn = true;
+      await _googleSignIn.signIn().then((value) {
+        setState(() {
+          _isLoggedIn = true;
+        });
+        Navigator.pushNamed(context, HomePage.routeName);
       });
     } catch (err) {
       print(err);
@@ -265,9 +267,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     padding: EdgeInsets.only(left: 40, right: 40),
                     shape: StadiumBorder(),
                     color: Color(0xFF2F8D46),
-                    onPressed: () async {
-                      await _login();
-                      Navigator.pushNamed(context, HomePage.routeName);
+                    onPressed: () {
+                      _login();
                     },
                     child: Text(
                       'Sign In With Google',
