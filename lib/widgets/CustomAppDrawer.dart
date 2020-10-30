@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:share/share.dart';
-import 'package:our_gfg/screens/EventRegistration.dart';
-import 'package:our_gfg/screens/contact_us_screen.dart';
-import 'package:our_gfg/screens/homepage.dart';
 
+import '../screens/EventRegistration.dart';
+import '../screens/contact_us_screen.dart';
+import '../screens/homepage.dart';
 import '../screens/LoginScreen.dart';
-
 import '../screens/about_screen.dart';
 import '../screens/members.dart';
 import '../screens/upcoming_events_screen.dart';
