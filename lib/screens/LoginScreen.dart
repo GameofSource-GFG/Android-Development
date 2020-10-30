@@ -39,6 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
   //They are initialized to true but their values change depending on data entered.On pressing the LogIn button
   //the functions bool isValidEmail(String) and bool isValidPassword(String)
   //are called which validate entered data and return true if data is valid and false if data is invalid.
+  // ignore: unused_field
   bool _isLoggedIn = false;
 
   GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
