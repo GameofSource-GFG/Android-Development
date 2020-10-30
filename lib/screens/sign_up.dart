@@ -2,6 +2,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:our_gfg/screens/homepage.dart';
 
 String emailIdErrorMessage = "";
@@ -49,15 +50,27 @@ class _SignUpState extends State<SignUp> {
   final password = TextEditingController();
   bool validityEmail = true;
   bool validityPassword = true;
+
+  bool _isLoading = false;
 //email sign-up method
   void registerToFb() {
+    setState(() {
+      _isLoading = true;
+    });
     firebaseAuth
         .createUserWithEmailAndPassword(
             email: email.text, password: password.text)
         .then((result) {
       Navigator.pushNamed(context, HomePage.routeName);
+
+      setState(() {
+        _isLoading = false;
+      });
     }).catchError(
       (err) {
+        setState(() {
+          _isLoading = false;
+        });
         showDialog(
           context: context,
           builder: (BuildContext context) {
@@ -90,137 +103,140 @@ class _SignUpState extends State<SignUp> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(36.0),
-          child: ListView(
-            children: <Widget>[
-              //  SizedBox(height: 80),
-              Column(
-                children: <Widget>[
-                  Image(
-                    image: NetworkImage(
-                        'https://media.geeksforgeeks.org/wp-content/cdn-uploads/20190710102234/download3.png'),
-                  ),
-                  SizedBox(height: 16),
-                  Text(
-                    'Geeks For Geeks',
-                    style: TextStyle(
-                      fontSize: 20,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 60),
-              Padding(
-                padding: const EdgeInsets.only(left: 10, right: 10),
-                child: TextField(
-                  textInputAction: TextInputAction.next,
-                  onSubmitted: (v) {
-                    FocusScope.of(context).requestFocus();
-                  },
-                  decoration: InputDecoration(
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.brown),
-                    ),
-                    hintText: '\tName',
-                    icon: Icon(
-                      Icons.person_add,
-                      color: Colors.brown,
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 13,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 10, right: 10),
-                child: TextField(
-                  controller: email,
-                  keyboardType: TextInputType.emailAddress,
-                  textInputAction: TextInputAction.next,
-                  onSubmitted: (v) {
-                    FocusScope.of(context).requestFocus();
-                  },
-                  decoration: InputDecoration(
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.brown),
-                    ),
-                    hintText: '\tEmail',
-                    icon: Icon(
-                      Icons.email,
-                      color: Colors.brown,
-                    ),
-                    errorText: validityEmail ? null : emailIdErrorMessage,
-                  ),
-                ),
-              ),
-              SizedBox(height: 14),
-              Padding(
-                padding: const EdgeInsets.only(left: 10, right: 10),
-                child: TextField(
-                  controller: password,
-                  textInputAction: TextInputAction.done,
-
-                  decoration: InputDecoration(
-                    hoverColor: Colors.brown,
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.brown),
-                    ),
-                    hintText: 'Password',
-                    icon: Icon(Icons.lock, color: Colors.brown),
-                    errorText: validityPassword ? null : passwordErrorMessage,
-                  ),
-                  obscureText:
-                      true, //replaces password with bullets as we enter it
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(10, 30, 10, 10),
-                child: Column(
+    return ModalProgressHUD(
+      inAsyncCall: _isLoading,
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: SafeArea(
+          child: Padding(
+            padding: EdgeInsets.all(36.0),
+            child: ListView(
+              children: <Widget>[
+                //  SizedBox(height: 80),
+                Column(
                   children: <Widget>[
-                    Text('Continue for a seamless experience!'),
-                    SizedBox(
-                      height: 10.0,
+                    Image(
+                      image: NetworkImage(
+                          'https://media.geeksforgeeks.org/wp-content/cdn-uploads/20190710102234/download3.png'),
                     ),
-                    RaisedButton(
-                      padding: EdgeInsets.only(left: 40, right: 40),
-                      shape: StadiumBorder(),
-                      color: Color(0xFF2F8D46),
-                      onPressed: () {
-                        setState(
-                          () {
-                            validityEmail = isValidEmail(email.text);
-                            validityPassword = isValidPassword(password.text);
-                            registerToFb();
-                          },
-                        );
-                      },
-                      child: Text('SIGN UP'),
-                    ),
-                    SizedBox(
-                      height: 10.0,
-                    ),
-                    RaisedButton(
-                      padding: EdgeInsets.only(left: 40, right: 40),
-                      shape: StadiumBorder(),
-                      color: Color(0xFF2F8D46),
-                      onPressed: () async {
-                        await _login();
-                        Navigator.pushNamed(context, HomePage.routeName);
-                      },
-                      child: Text('Sign In With Google'),
+                    SizedBox(height: 16),
+                    Text(
+                      'Geeks For Geeks',
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
                     ),
                   ],
                 ),
-              ),
-            ],
+                SizedBox(height: 60),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10, right: 10),
+                  child: TextField(
+                    textInputAction: TextInputAction.next,
+                    onSubmitted: (v) {
+                      FocusScope.of(context).requestFocus();
+                    },
+                    decoration: InputDecoration(
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.brown),
+                      ),
+                      hintText: '\tName',
+                      icon: Icon(
+                        Icons.person_add,
+                        color: Colors.brown,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 13,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10, right: 10),
+                  child: TextField(
+                    controller: email,
+                    keyboardType: TextInputType.emailAddress,
+                    textInputAction: TextInputAction.next,
+                    onSubmitted: (v) {
+                      FocusScope.of(context).requestFocus();
+                    },
+                    decoration: InputDecoration(
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.brown),
+                      ),
+                      hintText: '\tEmail',
+                      icon: Icon(
+                        Icons.email,
+                        color: Colors.brown,
+                      ),
+                      errorText: validityEmail ? null : emailIdErrorMessage,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 14),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10, right: 10),
+                  child: TextField(
+                    controller: password,
+                    textInputAction: TextInputAction.done,
+
+                    decoration: InputDecoration(
+                      hoverColor: Colors.brown,
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.brown),
+                      ),
+                      hintText: 'Password',
+                      icon: Icon(Icons.lock, color: Colors.brown),
+                      errorText: validityPassword ? null : passwordErrorMessage,
+                    ),
+                    obscureText:
+                        true, //replaces password with bullets as we enter it
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(10, 30, 10, 10),
+                  child: Column(
+                    children: <Widget>[
+                      Text('Continue for a seamless experience!'),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      RaisedButton(
+                        padding: EdgeInsets.only(left: 40, right: 40),
+                        shape: StadiumBorder(),
+                        color: Color(0xFF2F8D46),
+                        onPressed: () {
+                          setState(
+                            () {
+                              validityEmail = isValidEmail(email.text);
+                              validityPassword = isValidPassword(password.text);
+                              registerToFb();
+                            },
+                          );
+                        },
+                        child: Text('SIGN UP'),
+                      ),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      RaisedButton(
+                        padding: EdgeInsets.only(left: 40, right: 40),
+                        shape: StadiumBorder(),
+                        color: Color(0xFF2F8D46),
+                        onPressed: () async {
+                          await _login();
+                          Navigator.pushNamed(context, HomePage.routeName);
+                        },
+                        child: Text('Sign In With Google'),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
