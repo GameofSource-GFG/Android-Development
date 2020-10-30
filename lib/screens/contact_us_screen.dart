@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:our_gfg/components/embedded_map.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
+import '../components/embedded_map.dart';
 import '../services/firebase_storage_service.dart';
 import '../components/my_text_field.dart';
 import '../widgets/CustomAppDrawer.dart';
