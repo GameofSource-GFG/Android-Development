@@ -1,7 +1,7 @@
 //sign up page along with google sign in button
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:our_gfg/screens/homepage.dart';
 
 String emailIdErrorMessage = "";
@@ -20,44 +20,32 @@ class _SignUpState extends State<SignUp> {
 
   //google sign-in
   // ignore: unused_field
-  bool _isLoggedIn = false;
-
-  GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
-
-  _login() async {
-    try {
-      await _googleSignIn.signIn();
-      setState(() {
-        _isLoggedIn = true;
-      });
-    } catch (err) {
-      print(err);
-    }
-  }
-
-  // ignore: unused_element
-  _logout() {
-    _googleSignIn.signOut();
-    setState(
-      () {
-        _isLoggedIn = false;
-      },
-    );
-  }
 
   final email = TextEditingController();
   final password = TextEditingController();
   bool validityEmail = true;
   bool validityPassword = true;
+
+  bool _isLoading = false;
 //email sign-up method
   void registerToFb() {
+    setState(() {
+      _isLoading = true;
+    });
     firebaseAuth
         .createUserWithEmailAndPassword(
             email: email.text, password: password.text)
         .then((result) {
       Navigator.pushNamed(context, HomePage.routeName);
+
+      setState(() {
+        _isLoading = false;
+      });
     }).catchError(
       (err) {
+        setState(() {
+          _isLoading = false;
+        });
         showDialog(
           context: context,
           builder: (BuildContext context) {
@@ -90,13 +78,14 @@ class _SignUpState extends State<SignUp> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(36.0),
-          child: ListView(
-            children: <Widget>[
+    return ModalProgressHUD(
+      inAsyncCall: _isLoading,
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: SafeArea(
+          child: Padding(
+            padding: EdgeInsets.all(36.0),
+            child: ListView(children: <Widget>[
               //  SizedBox(height: 80),
               Column(
                 children: <Widget>[
@@ -178,6 +167,7 @@ class _SignUpState extends State<SignUp> {
                       true, //replaces password with bullets as we enter it
                 ),
               ),
+
               SizedBox(
                 height: 10,
               ),
@@ -202,25 +192,16 @@ class _SignUpState extends State<SignUp> {
                           },
                         );
                       },
-                      child: Text('SIGN UP'),
+                      child: Text('SIGN UP',
+                          style: TextStyle(color: Colors.white)),
                     ),
                     SizedBox(
                       height: 10.0,
                     ),
-                    RaisedButton(
-                      padding: EdgeInsets.only(left: 40, right: 40),
-                      shape: StadiumBorder(),
-                      color: Color(0xFF2F8D46),
-                      onPressed: () async {
-                        await _login();
-                        Navigator.pushNamed(context, HomePage.routeName);
-                      },
-                      child: Text('Sign In With Google'),
-                    ),
                   ],
                 ),
               ),
-            ],
+            ]),
           ),
         ),
       ),

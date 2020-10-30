@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:share/share.dart';
 import 'package:our_gfg/screens/EventRegistration.dart';
 import 'package:our_gfg/screens/contact_us_screen.dart';
 import 'package:our_gfg/screens/homepage.dart';
@@ -127,6 +128,27 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
               ),
               leading: Icon(
                 Icons.contact_page,
+                color: Color.fromRGBO(47, 141, 70, 1),
+              ),
+            ),
+          ),
+          Divider(
+            color: Color.fromRGBO(47, 141, 70, 1),
+          ),
+          InkWell(
+            onTap: () {
+              Share.share('Find *Our GFG* app here, \n\n'
+                  'Step 1: Visit https://github.com/GameofSource-GFG/Android-Development \n'
+                  'Step 2: Click on ```Actions``` \n'
+                  'Step 3: In the workflows listed, click on the latest workflow \n'
+                  'Step 4: Download the ```release-apk``` present under the heading *Artifacts*');
+            },
+            child: ListTile(
+              title: Text(
+                "Share",
+              ),
+              leading: Icon(
+                Icons.share,
                 color: Color.fromRGBO(47, 141, 70, 1),
               ),
             ),
