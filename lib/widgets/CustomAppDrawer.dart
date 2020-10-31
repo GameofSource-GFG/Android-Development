@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -27,13 +26,6 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
   }
   getEmail()async{
     email = FirebaseAuth.instance.currentUser.email;
-    //below code for user created with firebas emeail auth and if u r storing name in firebase auth data
-    // name = FirebaseAuth.instance.currentUser?.displayName;
-    //below code for user created using google sign in and nmame store in google sign in data
-    // googlename = GoogleSignIn().currentUser?.displayName;
-    //below code for getting user data from firestore
-    DocumentSnapshot doc = await FirebaseFirestore.instance.collection("collection_name").doc("doc_name").get();
-    firestorename = doc.data()["variable nbame in which you are storing name"];
   }
   
   @override
@@ -48,12 +40,8 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
                     image: AssetImage("assets/images/logo.jpeg"),
                     fit: BoxFit.cover)),
             child: null,
-          ),//replace any of the name varibale
-            // ListTile(
-            //   title: Text('name: ${name == null? googlename : name}'),
-            // ),
-            //replace email variable
-            ListTile(
+          ),
+           ListTile(
               leading: Icon(Icons.person,color: Color.fromRGBO(47, 141, 70, 1),),
               title: Text(email),
             ),
