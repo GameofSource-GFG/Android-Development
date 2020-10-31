@@ -1,13 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:share/share.dart';
-import 'package:our_gfg/screens/EventRegistration.dart';
-import 'package:our_gfg/screens/contact_us_screen.dart';
-import 'package:our_gfg/screens/homepage.dart';
 
+import '../screens/EventRegistration.dart';
+import '../screens/contact_us_screen.dart';
+import '../screens/homepage.dart';
 import '../screens/LoginScreen.dart';
-
 import '../screens/about_screen.dart';
 import '../screens/members.dart';
 import '../screens/upcoming_events_screen.dart';
@@ -19,6 +20,26 @@ class CustomAppDrawer extends StatefulWidget {
 }
 
 class _CustomAppDrawerState extends State<CustomAppDrawer> {
+   String email,name,googlename,firestorename;
+  @override
+  void initState() {
+    setState(() {
+     getEmail();
+    });
+    // TODO: implement initState
+    super.initState();
+  }
+  getEmail()async{
+    email = FirebaseAuth.instance.currentUser.email;
+    //below code for user created with firebas emeail auth and if u r storing name in firebase auth data
+    name = FirebaseAuth.instance.currentUser.displayName;
+    //below code for user created using google sign in and nmame store in google sign in data
+    googlename = GoogleSignIn().currentUser.displayName;
+    //below code for getting user data from firestore
+    DocumentSnapshot doc = await FirebaseFirestore.instance.collection("collection_name").doc("doc_name").get();
+    firestorename = doc.data()["variable nbame in which you are storing name"];
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -31,7 +52,14 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
                     image: AssetImage("assets/images/logo.jpeg"),
                     fit: BoxFit.cover)),
             child: null,
-          ),
+          ),//replace any of the name varibale
+            ListTile(
+              title: Text('name'),
+            ),
+            //replace email variable
+            ListTile(
+              title: Text("email"),
+            ),
           InkWell(
             onTap: () {
               Navigator.pushNamed(context, HomePage.routeName);
