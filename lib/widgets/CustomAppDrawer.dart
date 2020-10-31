@@ -1,8 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:share/share.dart';
 
 import '../screens/EventRegistration.dart';
@@ -20,26 +17,6 @@ class CustomAppDrawer extends StatefulWidget {
 }
 
 class _CustomAppDrawerState extends State<CustomAppDrawer> {
-   String email,name,googlename,firestorename;
-  @override
-  void initState() {
-    setState(() {
-     getEmail();
-    });
-    // TODO: implement initState
-    super.initState();
-  }
-  getEmail()async{
-    email = FirebaseAuth.instance.currentUser.email;
-    //below code for user created with firebas emeail auth and if u r storing name in firebase auth data
-    name = FirebaseAuth.instance.currentUser.displayName;
-    //below code for user created using google sign in and nmame store in google sign in data
-    googlename = GoogleSignIn().currentUser.displayName;
-    //below code for getting user data from firestore
-    DocumentSnapshot doc = await FirebaseFirestore.instance.collection("collection_name").doc("doc_name").get();
-    firestorename = doc.data()["variable nbame in which you are storing name"];
-  }
-  
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -52,14 +29,7 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
                     image: AssetImage("assets/images/logo.jpeg"),
                     fit: BoxFit.cover)),
             child: null,
-          ),//replace any of the name varibale
-            ListTile(
-              title: Text('name'),
-            ),
-            //replace email variable
-            ListTile(
-              title: Text("email"),
-            ),
+          ),
           InkWell(
             onTap: () {
               Navigator.pushNamed(context, HomePage.routeName);
