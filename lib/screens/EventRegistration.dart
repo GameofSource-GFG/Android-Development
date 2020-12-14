@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 
 import '../widgets/CustomAppDrawer.dart';
 
@@ -18,24 +18,24 @@ class _EventRegistrationState extends State<EventRegistration> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
+    return Scaffold(
+      appBar: AppBar(
         title: Text(
           "Register",
           style: TextStyle(fontSize: null),
         ),
       ),
       drawer: CustomAppDrawer(),
-      body: new SafeArea(
+      body: SafeArea(
         top: false,
         bottom: false,
-        child: new Form(
+        child: Form(
           key: _formKey,
-          child: new ListView(
+          child: ListView(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             children: <Widget>[
               Divider(),
-              new TextFormField(
+              TextFormField(
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   prefixIcon: const Icon(Icons.person),
@@ -44,7 +44,7 @@ class _EventRegistrationState extends State<EventRegistration> {
                 ),
                 controller: name,
               ),
-              new TextFormField(
+              TextFormField(
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   prefixIcon: const Icon(Icons.carpenter_rounded),
@@ -53,7 +53,7 @@ class _EventRegistrationState extends State<EventRegistration> {
                 ),
                 controller: usn,
               ),
-              new TextFormField(
+              TextFormField(
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   prefixIcon: const Icon(Icons.email),
@@ -75,7 +75,7 @@ class _EventRegistrationState extends State<EventRegistration> {
               ),
               new Container(
                 padding: const EdgeInsets.only(left: 40.0, top: 20.0),
-                child: new RaisedButton(
+                child: RaisedButton(
                   child: const Text('Submit'),
                   onPressed: () async {
                     await FirebaseFirestore.instance
