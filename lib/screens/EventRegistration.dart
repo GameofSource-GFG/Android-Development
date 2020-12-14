@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:our_gfg/models/event.dart';
+import 'package:our_gfg/services/firebase_storage_service.dart';
 
 import '../widgets/CustomAppDrawer.dart';
 
@@ -15,6 +17,24 @@ class _EventRegistrationState extends State<EventRegistration> {
   TextEditingController email = TextEditingController();
   TextEditingController event = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+
+  String dropDownHint = 'Select Event';
+  List<String> eventList = [];
+
+  @override
+  void initState() {
+    fetchEvents();
+    super.initState();
+  }
+
+  void fetchEvents() async {
+    List<Event> event = await FirebaseStorageService.getUpcomingEvents();
+    setState(() {
+      for (Event i in event) {
+        eventList.add(i.title);
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,17 +83,26 @@ class _EventRegistrationState extends State<EventRegistration> {
                 controller: email,
                 keyboardType: TextInputType.emailAddress,
               ),
-              new TextFormField(
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  prefixIcon: const Icon(Icons.event),
-                  hintText: 'Enter the Event Name',
-                  labelText: 'Event',
+              DropdownButton<String>(
+                hint: Text(
+                  dropDownHint,
+                  style: TextStyle(
+                    color: Colors.grey,
+                  ),
                 ),
-                controller: event,
-                keyboardType: TextInputType.emailAddress,
+                items: eventList.map((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+                onChanged: (val) {
+                  setState(() {
+                    dropDownHint = val;
+                  });
+                },
               ),
-              new Container(
+              Container(
                 padding: const EdgeInsets.only(left: 40.0, top: 20.0),
                 child: RaisedButton(
                   child: const Text('Submit'),
